@@ -1,0 +1,68 @@
+/* ── Arquitectura: flujo horizontal ── */
+.logo-badge-img {
+  height: 34px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  filter: brightness(1.1);
+}
+
+/* ── Brand chips (arquitectura) ── */
+.brand-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 0;
+}
+
+.brand-chip-critical {
+  border-color: #ef444466;
+  background: linear-gradient(160deg, #1a1218, var(--bg-card));
+}
+
+.brand-chip-logo {
+  height: 22px;
+  width: auto;
+  max-width: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brand-chip-logo-light {
+  background: #fff;
+  border-radius: 3px;
+  padding: 2px 4px;
+  height: 18px;
+}
+
+.brand-chip-logo-invert {
+  filter: brightness(0) invert(1);
+}
+
+.brand-chip-fallback {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.brand-chip-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.brand-chip-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.brand-chip-detail {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--text-muted);
+}

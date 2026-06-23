@@ -1,6 +1,7 @@
 import SlideLayout from './components/SlideLayout';
 import SlideImage from './components/SlideImage';
 import { IMAGES } from './assets/images';
+import './styles/09-closing.css';
 
 const FRAMEWORKS = [
   { icon: '🧮', label: 'Gestión de riesgos', detail: 'ISO 27005 · ALE · R1–R5' },
@@ -12,7 +13,8 @@ const Slide09Closing = () => (
   <SlideLayout
     label="Cierre"
     title="Lección central del análisis"
-    slideNumber={9}
+    slideNumber={12}
+    totalSlides={12}
   >
     <div className="closing-layout-v2">
       <div className="closing-main-v2">

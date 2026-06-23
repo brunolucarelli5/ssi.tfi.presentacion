@@ -1,0 +1,133 @@
+/* ── Imágenes y logos ── */
+.slide-image {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.slide-image-frame {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  box-shadow: 0 8px 24px #00000044;
+}
+
+.slide-image-frame-dark {
+  background: #000;
+  border-color: #2a3548;
+}
+
+.slide-image-frame-contain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-image-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 140px;
+}
+
+.slide-image-img-contain {
+  object-fit: contain;
+  min-height: 0;
+}
+
+.slide-image-img-invert {
+  filter: brightness(0) invert(1);
+}
+
+.slide-image-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  background: linear-gradient(180deg, transparent 50%, #000000aa 100%);
+  pointer-events: none;
+}
+
+.slide-image-tag {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: var(--danger);
+  color: white;
+}
+
+.slide-image-caption {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.slide-image-fallback .slide-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 140px;
+  padding: 1rem;
+  background: linear-gradient(145deg, var(--bg-elevated), var(--bg-card));
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+
+.slide-image-placeholder-icon {
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.slide-image-placeholder-text {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.slide-image-link {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.slide-image-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0;
+  height: 100%;
+  min-height: 0;
+}
+
+.slide-image-link:hover .slide-image-frame {
+  border-color: var(--jeep);
+  box-shadow: 0 8px 28px #7cb34222;
+}
+
+.slide-image-link:hover .slide-image-caption {
+  color: var(--jeep);
+}
+
+.slide-image-link:focus-visible {
+  outline: 2px solid var(--jeep);
+  outline-offset: 3px;
+}

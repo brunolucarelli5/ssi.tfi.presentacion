@@ -91,7 +91,7 @@ const exportPdf = async () => {
     });
     await page.waitForFunction(() => {
       const slideElements = document.querySelectorAll('.print-mode .slide');
-      return slideElements.length === 12
+      return slideElements.length === 10
         && Array.from(slideElements).every((slide) => parseFloat(slide.style.zoom) > 0);
     }, { timeout: 15000 });
 

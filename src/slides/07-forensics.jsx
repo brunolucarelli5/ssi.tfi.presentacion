@@ -1,6 +1,7 @@
 import SlideLayout from './components/SlideLayout';
 import SlideImage from './components/SlideImage';
 import { IMAGES } from './assets/images';
+import './styles/07-forensics.css';
 
 const FORENSIC_LAYERS = [
   {
@@ -25,7 +26,8 @@ const Slide07Forensics = () => (
     label="Pericias forenses"
     title="Artefactos y cadena de custodia"
     subtitle="Orden de adquisición según RFC 3227 e ISO/IEC 27037"
-    slideNumber={7}
+    slideNumber={10}
+    totalSlides={12}
   >
     <div className="forensic-slide-layout">
       <div className="forensic-slide-main">

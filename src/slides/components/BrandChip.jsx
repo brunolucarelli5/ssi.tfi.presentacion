@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { IMAGES } from '../assets/images';
+import './BrandChip.css';
 
 const BrandChip = ({ imageKey, label, detail, critical = false }) => {
   const asset = IMAGES[imageKey];

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './SlideImage.css';
 
 const SlideImage = ({
   src,
@@ -10,6 +11,8 @@ const SlideImage = ({
   objectFit = 'cover',
   darkBg = false,
   invert = false,
+  href,
+  linkLabel,
 }) => {
   const [hasError, setHasError] = useState(false);
 
@@ -37,8 +40,8 @@ const SlideImage = ({
     invert ? 'slide-image-img-invert' : '',
   ].filter(Boolean).join(' ');
 
-  return (
-    <figure className={`slide-image ${className}`}>
+  const figure = (
+    <>
       <div className={frameClass}>
         <img
           src={src}
@@ -50,8 +53,24 @@ const SlideImage = ({
         {overlay && <div className="slide-image-overlay">{overlay}</div>}
       </div>
       {caption && <figcaption className="slide-image-caption">{caption}</figcaption>}
-    </figure>
+    </>
   );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`slide-image slide-image-link ${className}`}
+        aria-label={linkLabel || caption || alt}
+      >
+        <figure className="slide-image-inner">{figure}</figure>
+      </a>
+    );
+  }
+
+  return <figure className={`slide-image ${className}`}>{figure}</figure>;
 };
 
 export default SlideImage;

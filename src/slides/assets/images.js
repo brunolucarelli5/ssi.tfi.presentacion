@@ -17,6 +17,20 @@ export const IMAGES = {
     available: true,
     fit: 'cover',
   },
+  jeepCherokeeConsole: {
+    src: '/images/jeep-cherokee-central-console.jpg',
+    filename: 'jeep-cherokee-central-console.jpg',
+    alt: 'Pantalla Uconnect del Jeep Cherokee — dominio infotainment',
+    available: true,
+    fit: 'cover',
+  },
+  jeepCherokeeMotor: {
+    src: '/images/jeep-cherokee-motor.jpg',
+    filename: 'jeep-cherokee-motor.jpg',
+    alt: 'Compartimento motor del Jeep Cherokee — control crítico',
+    available: true,
+    fit: 'cover',
+  },
   uconnectLogo: {
     src: '/images/uconnect-logo.jpg',
     filename: 'uconnect-logo.jpg',
@@ -64,7 +78,7 @@ export const IMAGES = {
     filename: 'sprint.png',
     alt: 'Logo Sprint',
     available: true,
-    darkBg: true,
+    lightBg: true,
   },
   logoHarman: {
     src: '/images/harman-logo.png',

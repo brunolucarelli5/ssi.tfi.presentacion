@@ -31,79 +31,85 @@ const getCellLevel = (score) => {
 
 const getRisksInCell = (p, i) => RISKS.filter((r) => r.p === p && r.i === i);
 
-const RiskMatrix = () => (
-  <div className="risk-matrix-panel">
+const RiskMatrix = ({ compact = false }) => (
+  <div className={`risk-matrix-panel${compact ? ' risk-matrix-panel-compact' : ''}`}>
     <div className="risk-matrix-chart">
       <div className="risk-matrix-y-title">Probabilidad</div>
-      <div className="risk-matrix-body">
-        <div className="risk-matrix-y-labels">
-          {[5, 4, 3, 2, 1].map((p) => (
-            <div className="risk-matrix-y-label" key={p}>
-              <span className="risk-matrix-axis-num">{p}</span>
-              <span className="risk-matrix-axis-text">{PROB_LABELS[p]}</span>
+      <div className="risk-matrix-stack">
+        <div className="risk-matrix-body">
+          <div className="risk-matrix-core">
+            <div className="risk-matrix-y-labels">
+              {[5, 4, 3, 2, 1].map((p) => (
+                <div className="risk-matrix-y-label" key={p}>
+                  <span className="risk-matrix-axis-num">{p}</span>
+                  <span className="risk-matrix-axis-text">{PROB_LABELS[p]}</span>
+                </div>
+              ))}
             </div>
-          ))}
+
+            <div className="risk-matrix-grid">
+              {[5, 4, 3, 2, 1].map((p) => (
+                <div className="risk-matrix-row" key={p}>
+                  {[1, 2, 3, 4, 5].map((i) => {
+                    const score = p * i;
+                    const risks = getRisksInCell(p, i);
+                    return (
+                      <div
+                        className={`risk-matrix-cell risk-matrix-cell-${getCellLevel(score)}`}
+                        key={`${p}-${i}`}
+                        aria-label={`Probabilidad ${p}, Impacto ${i}, puntaje ${score}`}
+                      >
+                        <span className="risk-matrix-cell-score">{score}</span>
+                        <div className="risk-matrix-markers">
+                          {risks.map((r) => (
+                            <span className={`risk-matrix-marker risk-matrix-marker-${r.level}`} key={r.id}>
+                              {r.id}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="risk-matrix-x-axis">
+            <div className="risk-matrix-x-labels">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div className="risk-matrix-x-label" key={i}>
+                  <span className="risk-matrix-axis-num">{i}</span>
+                  <span className="risk-matrix-axis-text">{IMPACT_LABELS[i]}</span>
+                </div>
+              ))}
+            </div>
+            <div className="risk-matrix-x-title">Impacto sobre el activo</div>
+          </div>
         </div>
 
-        <div className="risk-matrix-grid-wrap">
-          <div className="risk-matrix-grid">
-            {[5, 4, 3, 2, 1].map((p) => (
-              <div className="risk-matrix-row" key={p}>
-                {[1, 2, 3, 4, 5].map((i) => {
-                  const score = p * i;
-                  const risks = getRisksInCell(p, i);
-                  return (
-                    <div
-                      className={`risk-matrix-cell risk-matrix-cell-${getCellLevel(score)}`}
-                      key={`${p}-${i}`}
-                      aria-label={`Probabilidad ${p}, Impacto ${i}, puntaje ${score}`}
-                    >
-                      <span className="risk-matrix-cell-score">{score}</span>
-                      <div className="risk-matrix-markers">
-                        {risks.map((r) => (
-                          <span className={`risk-matrix-marker risk-matrix-marker-${r.level}`} key={r.id}>
-                            {r.id}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
-          </div>
-
-          <div className="risk-matrix-x-labels">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div className="risk-matrix-x-label" key={i}>
-                <span className="risk-matrix-axis-num">{i}</span>
-                <span className="risk-matrix-axis-text">{IMPACT_LABELS[i]}</span>
-              </div>
-            ))}
-          </div>
-          <div className="risk-matrix-x-title">Impacto sobre el activo</div>
+        <div className="risk-matrix-legend">
+          <span className="risk-legend-item"><span className="risk-legend-swatch low" />Bajo (1–7)</span>
+          <span className="risk-legend-item"><span className="risk-legend-swatch medium" />Medio (8–14)</span>
+          <span className="risk-legend-item"><span className="risk-legend-swatch high" />Alto (15–19)</span>
+          <span className="risk-legend-item"><span className="risk-legend-swatch critical" />Crítico (20–25)</span>
         </div>
       </div>
     </div>
 
-    <div className="risk-matrix-legend">
-      <span className="risk-legend-item"><span className="risk-legend-swatch low" />Bajo (1–7)</span>
-      <span className="risk-legend-item"><span className="risk-legend-swatch medium" />Medio (8–14)</span>
-      <span className="risk-legend-item"><span className="risk-legend-swatch high" />Alto (15–19)</span>
-      <span className="risk-legend-item"><span className="risk-legend-swatch critical" />Crítico (20–25)</span>
-    </div>
-
-    <div className="risk-register">
-      {RISKS.map((r) => (
-        <div className="risk-register-item" key={r.id}>
-          <span className="risk-register-id">{r.id}</span>
-          <span className="risk-register-label">{r.label}</span>
-          <span className={`risk-register-score risk-register-score-${r.level}`}>
-            {r.score} pts
-          </span>
-        </div>
-      ))}
-    </div>
+    {!compact && (
+      <div className="risk-register">
+        {RISKS.map((r) => (
+          <div className="risk-register-item" key={r.id}>
+            <span className="risk-register-id">{r.id}</span>
+            <span className="risk-register-label">{r.label}</span>
+            <span className={`risk-register-score risk-register-score-${r.level}`}>
+              {r.score} pts
+            </span>
+          </div>
+        ))}
+      </div>
+    )}
   </div>
 );
 

@@ -1,5 +1,6 @@
 import SlideImage from './SlideImage';
 import { IMAGES } from '../assets/images';
+import './TitleSlide.css';
 
 const TitleSlide = ({ badge, title, subtitle, meta, heroImage = IMAGES.jeepCherokee }) => (
   <div className="title-slide slide-frame title-slide-frame">
@@ -8,11 +9,13 @@ const TitleSlide = ({ badge, title, subtitle, meta, heroImage = IMAGES.jeepChero
       <div className="title-slide-glow" />
     </div>
 
-    <img
-      src={IMAGES.logoUtn.src}
-      alt={IMAGES.logoUtn.alt}
-      className="title-slide-utn-corner"
-    />
+    <div className="title-slide-utn-badge">
+      <img
+        src={IMAGES.logoUtn.src}
+        alt={IMAGES.logoUtn.alt}
+        className="title-slide-utn-corner"
+      />
+    </div>
 
     <div className="title-slide-layout">
       <div className="title-slide-content">
@@ -51,23 +54,14 @@ const TitleSlide = ({ badge, title, subtitle, meta, heroImage = IMAGES.jeepChero
         src={heroImage.src}
         alt={heroImage.alt}
         className="title-hero-image"
-        caption="Jeep Cherokee KL — vehículo de producción sin modificaciones"
         fallbackLabel="Jeep Cherokee"
         objectFit={heroImage.fit || 'contain'}
-        darkBg={heroImage.darkBg}
-        overlay={
-          <img
-            src={IMAGES.logoJeep.src}
-            alt=""
-            className="title-hero-logo"
-            aria-hidden="true"
-          />
-        }
+        darkBg={false}
       />
     </div>
 
     <footer className="title-slide-footer">
-      <span>Trabajo Final Integrador · 2025</span>
+      <span>Trabajo Final Integrador</span>
     </footer>
   </div>
 );

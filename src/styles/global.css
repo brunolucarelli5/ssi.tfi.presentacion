@@ -1,0 +1,96 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #080c12;
+  --bg-card: #0f141c;
+  --bg-elevated: #161d2a;
+  --text: #eef2f8;
+  --text-muted: #9aadc4;
+  --accent: #4ade80;
+  --accent-dim: #22c55e33;
+  --danger: #f87171;
+  --danger-dim: #ef444433;
+  --warning: #fbbf24;
+  --info: #60a5fa;
+  --jeep: #7cb342;
+  --utn: #1e5aa8;
+  --border: #243044;
+  --border-subtle: #1a2436;
+  --font: 'DM Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --slide-radius: 16px;
+  --slide-design-w: 1920px;
+  --slide-design-h: 1080px;
+  --slide-aspect: 16 / 9;
+}
+
+html {
+  font-size: 20px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.presentation {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 45% at 15% 0%, #1e5aa822, transparent),
+    radial-gradient(ellipse 80% 50% at 50% -20%, #1e3a5f44, transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, #7cb34212, transparent),
+    linear-gradient(180deg, #0a1018 0%, var(--bg) 100%),
+    var(--bg);
+}
+
+.presentation::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.35;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, black 20%, transparent 75%);
+}
+
+.slide-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.slide {
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeIn 0.45s ease-out;
+  position: relative;
+  z-index: 1;
+  aspect-ratio: var(--slide-aspect);
+}

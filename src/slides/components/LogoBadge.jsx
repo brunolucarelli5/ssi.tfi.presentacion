@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IMAGES } from '../assets/images';
 
-const LogoBadge = ({ imageKey, name, role, size = 'md', highlight = false }) => {
+const LogoBadge = ({ imageKey, name, role, size = 'md', highlight = false, showName = true }) => {
   const asset = IMAGES[imageKey];
   const [hasError, setHasError] = useState(false);
 
@@ -17,11 +17,11 @@ const LogoBadge = ({ imageKey, name, role, size = 'md', highlight = false }) => 
 
     return (
       <div
-        className={`logo-badge logo-badge-fallback logo-badge-${size} ${highlight ? 'highlight' : ''}`}
+        className={`logo-badge logo-badge-fallback logo-badge-${size}${showName ? '' : ' logo-badge-logo-only'} ${highlight ? 'highlight' : ''}`}
         title={`${name}${role ? ` — ${role}` : ''}`}
       >
         <span className="logo-badge-initials" aria-hidden="true">{initials}</span>
-        <span className="logo-badge-name">{name}</span>
+        {showName && <span className="logo-badge-name">{name}</span>}
         {role && <span className="logo-badge-role">{role}</span>}
       </div>
     );
@@ -36,7 +36,7 @@ const LogoBadge = ({ imageKey, name, role, size = 'md', highlight = false }) => 
 
   return (
     <div
-      className={`logo-badge logo-badge-${size} ${highlight ? 'highlight' : ''}${asset.lightBg ? ' logo-badge-light-bg' : ''}`}
+      className={`logo-badge logo-badge-${size}${showName ? '' : ' logo-badge-logo-only'} ${highlight ? 'highlight' : ''}${asset.lightBg ? ' logo-badge-light-bg' : ''}`}
       title={`${name}${role ? ` — ${role}` : ''}`}
     >
       <img
@@ -46,7 +46,7 @@ const LogoBadge = ({ imageKey, name, role, size = 'md', highlight = false }) => 
         loading="lazy"
         onError={handleError}
       />
-      <span className="logo-badge-name">{name}</span>
+      {showName && <span className="logo-badge-name">{name}</span>}
       {role && <span className="logo-badge-role">{role}</span>}
     </div>
   );

@@ -1,0 +1,426 @@
+/* ── Escala presentación: overrides finales ── */
+.arch-slide-layout {
+  grid-template-columns: 1fr 240px !important;
+  gap: 1.25rem;
+}
+
+.brand-chip {
+  padding: 0.65rem 0.85rem;
+  gap: 0.65rem;
+}
+
+.brand-chip-logo {
+  height: 30px;
+  max-width: 72px;
+}
+
+.brand-chip-label {
+  font-size: 0.82rem;
+}
+
+.brand-chip-detail {
+  font-size: 0.68rem;
+}
+
+.arch-flow-arrow {
+  font-size: 1.15rem;
+}
+
+.arch-domain {
+  padding: 1rem 1.15rem;
+}
+
+.arch-domain-title {
+  font-size: 0.78rem;
+}
+
+.arch-domain-items {
+  font-size: 0.9rem;
+}
+
+.arch-domain-bridge-label {
+  font-size: 0.68rem;
+}
+
+.arch-warning {
+  font-size: 0.95rem;
+  padding: 0.85rem 1.15rem;
+}
+
+.arch-uconnect-logo {
+  max-height: 48px;
+}
+
+.arch-uconnect-caption {
+  font-size: 0.68rem;
+}
+
+.arch-harman-logo {
+  max-height: 42px;
+}
+
+.arch-vehicle-thumb .slide-image-frame {
+  min-height: 140px;
+}
+
+.arch-vehicle-thumb .slide-image-img-contain {
+  max-height: 150px;
+}
+
+.arch-slide-layout-flow .arch-vehicle-thumb .slide-image-frame {
+  min-height: 180px;
+}
+
+.arch-slide-layout-flow .arch-vehicle-thumb .slide-image-img-contain {
+  max-height: 190px;
+}
+
+.arch-pipeline-step {
+  padding: 1.5rem 0.75rem 1.1rem;
+  min-height: 180px;
+}
+
+.arch-pipeline-label {
+  font-size: 0.9rem;
+}
+
+.arch-pipeline-detail {
+  font-size: 0.68rem;
+}
+
+.arch-pipeline-logo {
+  height: 40px;
+  max-width: 88px;
+}
+
+.arch-flow-lead {
+  font-size: 0.78rem;
+}
+
+.arch-pipeline-zone {
+  font-size: 0.68rem;
+  padding: 0.45rem 0.6rem;
+}
+
+.arch-flow-context-text {
+  font-size: 0.85rem;
+}
+
+.arch-flow-context-harman {
+  height: 58px;
+  max-width: 200px;
+}
+
+.arch-domains-slide .arch-domain {
+  padding: 0.75rem 0.85rem 0.85rem;
+}
+
+.arch-domains-slide .arch-domain-photo .slide-image-frame {
+  max-height: 172px;
+}
+
+.arch-domains-slide .arch-domain-title {
+  font-size: 0.76rem;
+  margin-bottom: 0.2rem;
+}
+
+.arch-domains-slide .arch-domain-items {
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.arch-domains-slide .arch-domain-bridge-label {
+  font-size: 0.66rem;
+}
+
+.arch-domains-slide .arch-warning {
+  font-size: 0.88rem;
+  padding: 0.7rem 1.1rem;
+}
+
+.actors-slide .actors-hero-names {
+  font-size: 1.5rem;
+}
+
+.actors-slide .actors-hero-meta {
+  font-size: 0.9rem;
+}
+
+.actors-slide .actors-hero-darpa {
+  height: 38px;
+}
+
+.actors-grid-cell .logo-badge-logo-only .logo-badge-img {
+  height: 58px;
+  max-width: 160px;
+}
+
+.actors-grid-cell .logo-badge-logo-only .logo-badge-img-light {
+  max-height: 58px;
+  max-width: 160px;
+}
+
+.actors-grid-cell .logo-badge-role {
+  font-size: 0.82rem;
+}
+
+.timeline-slide {
+  gap: 0.65rem !important;
+}
+
+.timeline-v2-date {
+  font-size: 0.72rem;
+}
+
+.timeline-v2-label {
+  font-size: 0.82rem;
+}
+
+.timeline-v2-detail {
+  font-size: 0.68rem;
+}
+
+.timeline-v2-wired {
+  height: 13px;
+}
+
+.timeline-aside-value {
+  font-size: 1.5rem;
+}
+
+.timeline-aside-label {
+  font-size: 0.65rem;
+}
+
+.timeline-aside-note {
+  font-size: 0.65rem;
+}
+
+.impact-slide {
+  gap: 0.9rem !important;
+}
+
+.impact-stat-value {
+  font-size: 2.1rem;
+}
+
+.impact-stat-label {
+  font-size: 0.72rem;
+}
+
+.impact-quote-text {
+  font-size: 0.95rem;
+}
+
+.impact-footnote p {
+  font-size: 0.85rem;
+}
+
+.vuln-card {
+  padding: 1.15rem;
+}
+
+.vuln-card-icon {
+  font-size: 1.75rem;
+}
+
+.vuln-card-id {
+  font-size: 0.85rem;
+}
+
+.vuln-card-title {
+  font-size: 1.05rem;
+}
+
+.vuln-card-detail {
+  font-size: 0.88rem;
+}
+
+.vuln-card-outcome {
+  font-size: 0.85rem;
+}
+
+.vuln-cia-badge {
+  font-size: 0.72rem;
+}
+
+.vuln-card-brand {
+  height: 24px;
+  max-width: 80px;
+}
+
+.vuln-chain-footer {
+  font-size: 0.95rem;
+}
+
+.risk-register-item {
+  font-size: 0.78rem;
+}
+
+.risk-register-score {
+  font-size: 0.72rem;
+}
+
+.risk-slide .risk-matrix-y-labels {
+  width: 72px;
+}
+
+.risk-slide .risk-matrix-axis-num {
+  font-size: 0.72rem;
+}
+
+.risk-slide .risk-matrix-axis-text {
+  font-size: 0.58rem;
+}
+
+.risk-slide .risk-matrix-cell {
+  min-height: 0;
+}
+
+.risk-slide .risk-matrix-cell-score {
+  font-size: 0.52rem;
+}
+
+.risk-slide .risk-matrix-marker {
+  font-size: 0.62rem;
+  padding: 0.12rem 0.32rem;
+}
+
+.risk-slide .risk-legend-item {
+  font-size: 0.62rem;
+}
+
+.risk-slide .risk-legend-swatch {
+  width: 12px;
+  height: 12px;
+}
+
+.risk-slide .ale-panel-title {
+  font-size: 0.88rem;
+}
+
+.risk-slide .ale-panel-intro {
+  font-size: 0.75rem;
+}
+
+.risk-slide .ale-card-risk {
+  font-size: 0.82rem;
+}
+
+.risk-slide .ale-card-value {
+  font-size: 1.2rem;
+}
+
+.risk-slide .ale-card-highlight .ale-card-value {
+  font-size: 1.35rem;
+}
+
+.risk-slide .ale-card-level {
+  font-size: 0.62rem;
+}
+
+.risk-slide .ale-panel-footnote {
+  font-size: 0.65rem;
+}
+
+.nist-org-logo {
+  height: 28px;
+}
+
+.nist-table-phase {
+  font-size: 0.92rem;
+}
+
+.nist-table-detail {
+  font-size: 0.85rem;
+}
+
+.nist-eval-badge {
+  font-size: 0.72rem;
+}
+
+.forensic-priority {
+  font-size: 0.75rem;
+  min-width: 110px;
+}
+
+.forensic-items {
+  font-size: 0.92rem;
+}
+
+.forensic-slide-layout {
+  grid-template-columns: 1fr 190px !important;
+}
+
+.forensic-vehicle .slide-image-frame {
+  min-height: 140px;
+}
+
+.forensic-qnx-logo {
+  height: 30px;
+}
+
+.rec-card-title {
+  font-size: 0.88rem;
+}
+
+.rec-card-desc {
+  font-size: 0.78rem;
+}
+
+.rec-card-icon {
+  font-size: 1.4rem;
+}
+
+.closing-quote-main {
+  font-size: clamp(1.25rem, 2.8vw, 1.65rem);
+}
+
+.closing-framework-label {
+  font-size: 0.92rem;
+}
+
+.closing-framework-detail {
+  font-size: 0.72rem;
+}
+
+.closing-impact-bar {
+  font-size: 0.92rem;
+}
+
+.closing-contact {
+  font-size: 0.95rem;
+}
+
+.closing-layout-v2 {
+  grid-template-columns: 1fr 200px !important;
+}
+
+.closing-vehicle .slide-image-frame {
+  min-height: 170px;
+}
+
+.closing-vehicle .slide-image-img-contain {
+  max-height: 185px;
+}
+
+.closing-logo {
+  height: 38px;
+  max-width: 110px;
+}
+
+.slide-image-img {
+  min-height: 180px;
+}
+
+.slide-image-caption {
+  font-size: 0.72rem;
+}
+
+.nist-table-header {
+  font-size: 0.72rem;
+}
+
+.nist-orgs-label {
+  font-size: 0.68rem;
+}

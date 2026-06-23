@@ -1,4 +1,5 @@
 import SlideLayout from './components/SlideLayout';
+import './styles/08-recommendations.css';
 
 const RECOMMENDATIONS = [
   {
@@ -44,7 +45,8 @@ const Slide08Recommendations = () => (
     label="Propuestas de mejora"
     title="Mitigaciones técnicas y organizacionales"
     subtitle="Cada recomendación ataca la causa raíz de un riesgo identificado"
-    slideNumber={8}
+    slideNumber={11}
+    totalSlides={12}
   >
     <div className="rec-grid">
       {RECOMMENDATIONS.map((rec) => (

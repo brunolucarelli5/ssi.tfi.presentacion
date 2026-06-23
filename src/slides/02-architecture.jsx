@@ -1,85 +1,151 @@
+import { Fragment } from 'react';
 import SlideLayout from './components/SlideLayout';
-import SlideImage from './components/SlideImage';
-import BrandChip from './components/BrandChip';
 import { IMAGES } from './assets/images';
+import './styles/architecture-shared.css';
+import './styles/02-architecture.css';
+
+const BrakeDiscIcon = () => (
+  <svg className="arch-pipeline-brake-icon" viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="32" cy="32" r="27" fill="none" stroke="currentColor" strokeWidth="2.5" />
+    <circle cx="32" cy="32" r="11" fill="none" stroke="currentColor" strokeWidth="2.5" />
+    <circle cx="32" cy="14" r="3.5" fill="currentColor" />
+    <circle cx="32" cy="50" r="3.5" fill="currentColor" />
+    <circle cx="14" cy="32" r="3.5" fill="currentColor" />
+    <circle cx="50" cy="32" r="3.5" fill="currentColor" />
+    <circle cx="19.3" cy="19.3" r="3" fill="currentColor" />
+    <circle cx="44.7" cy="44.7" r="3" fill="currentColor" />
+    <circle cx="44.7" cy="19.3" r="3" fill="currentColor" />
+    <circle cx="19.3" cy="44.7" r="3" fill="currentColor" />
+  </svg>
+);
+
+const FLOW_STEPS = [
+  {
+    step: 1,
+    imageKey: 'logoSprint',
+    label: 'Red Sprint',
+    detail: 'Internet / 4G',
+    lightBg: true,
+  },
+  {
+    step: 2,
+    imageKey: 'logoQnx',
+    label: 'OMAP-DM3730',
+    detail: 'QNX + D-Bus',
+  },
+  {
+    step: 3,
+    icon: '⚙',
+    label: 'V850ES',
+    detail: 'Puente SPI',
+    numWarning: true,
+  },
+  {
+    step: 4,
+    imageKey: 'logoJeep',
+    label: 'CAN-C',
+    detail: 'Bus crítico',
+    critical: true,
+  },
+  {
+    step: 5,
+    icon: 'brake',
+    label: 'ABS · EPS · PCM',
+    detail: 'Seguridad activa',
+    critical: true,
+  },
+];
+
+const PipelineStep = ({
+  step,
+  imageKey,
+  icon,
+  label,
+  detail,
+  critical,
+  lightBg,
+  numWarning,
+}) => {
+  const asset = imageKey ? IMAGES[imageKey] : null;
+  const useLightBg = lightBg || asset?.lightBg;
+
+  const stepClass = [
+    'arch-pipeline-step',
+    critical ? 'arch-pipeline-step-critical' : '',
+    numWarning ? 'arch-pipeline-step-warning-num' : '',
+  ].filter(Boolean).join(' ');
+
+  return (
+    <article className={stepClass}>
+      <span className="arch-pipeline-num" aria-hidden="true">{step}</span>
+      <div className="arch-pipeline-icon" aria-hidden="true">
+        {asset ? (
+          <img
+            src={asset.src}
+            alt=""
+            className={[
+              'arch-pipeline-logo',
+              asset.invert ? 'arch-pipeline-logo-invert' : '',
+              useLightBg ? 'arch-pipeline-logo-light' : '',
+            ].filter(Boolean).join(' ')}
+          />
+        ) : icon === 'brake' ? (
+          <BrakeDiscIcon />
+        ) : (
+          <span className="arch-pipeline-fallback">{icon}</span>
+        )}
+      </div>
+      <h3 className="arch-pipeline-label">{label}</h3>
+      <p className="arch-pipeline-detail">{detail}</p>
+    </article>
+  );
+};
 
 const Slide02Architecture = () => (
   <SlideLayout
     label="Contexto y arquitectura"
-    title="Arquitectura vulnerable del Uconnect"
-    subtitle="La head unit conectaba Internet (Sprint) con los buses de control del vehículo sin ningún aislamiento"
+    title="Cadena de compromiso del Uconnect"
+    subtitle="Desde la red celular Sprint hasta los ECUs de seguridad activa del vehículo"
     slideNumber={2}
   >
-    <div className="arch-slide-layout">
-      <div className="arch-slide-main">
-        <div className="arch-flow">
-          <BrandChip imageKey="logoSprint" label="Red Sprint" detail="Internet / 4G" />
-          <div className="arch-flow-arrow" aria-hidden="true">→</div>
-          <BrandChip imageKey="logoQnx" label="OMAP-DM3730" detail="QNX + D-Bus" />
-          <div className="arch-flow-arrow" aria-hidden="true">→</div>
-          <div className="brand-chip">
-            <span className="brand-chip-fallback" aria-hidden="true">⚙</span>
-            <div className="brand-chip-text">
-              <span className="brand-chip-label">V850ES</span>
-              <span className="brand-chip-detail">Puente SPI</span>
-            </div>
-          </div>
-          <div className="arch-flow-arrow" aria-hidden="true">→</div>
-          <BrandChip imageKey="logoJeep" label="CAN-C" detail="Bus crítico" critical />
-          <div className="arch-flow-arrow" aria-hidden="true">→</div>
-          <div className="brand-chip brand-chip-critical">
-            <span className="brand-chip-fallback" aria-hidden="true">🚗</span>
-            <div className="brand-chip-text">
-              <span className="brand-chip-label">ABS · EPS · PCM</span>
-              <span className="brand-chip-detail">Seguridad activa</span>
-            </div>
-          </div>
+    <div className="arch-flow-slide">
+      <p className="arch-flow-lead">5 saltos consecutivos — sin gateway, sin ACL, sin autenticación</p>
+
+      <div className="arch-pipeline">
+        <div className="arch-pipeline-zones" aria-hidden="true">
+          <div className="arch-pipeline-zone arch-pipeline-zone-remote">Acceso remoto</div>
+          <div className="arch-pipeline-zone arch-pipeline-zone-uconnect">Head unit Uconnect</div>
+          <div className="arch-pipeline-zone arch-pipeline-zone-critical">Control físico</div>
         </div>
 
-        <div className="arch-domains">
-          <div className="arch-domain arch-domain-infotainment">
-            <div className="arch-domain-title">Infotainment</div>
-            <div className="arch-domain-items">OMAP · QNX · D-Bus · CAN-IHS (clima, audio)</div>
-          </div>
-          <div className="arch-domain-bridge" aria-hidden="true">
-            <div className="arch-domain-bridge-line" />
-            <span className="arch-domain-bridge-label">Sin gateway</span>
-          </div>
-          <div className="arch-domain arch-domain-critical">
-            <div className="arch-domain-title">Control crítico</div>
-            <div className="arch-domain-items">V850 · CAN-C · frenos · dirección · motor</div>
-          </div>
-        </div>
-
-        <div className="arch-warning">
-          <span className="arch-warning-icon" aria-hidden="true">⚠</span>
-          Sin gateway · Sin ACL · Sin autenticación de origen de mensajes
+        <div className="arch-pipeline-track">
+          {FLOW_STEPS.map((item, index) => (
+            <Fragment key={item.step}>
+              <PipelineStep {...item} />
+              {index < FLOW_STEPS.length - 1 && (
+                <div className="arch-pipeline-connector" aria-hidden="true" />
+              )}
+            </Fragment>
+          ))}
         </div>
       </div>
 
-      <aside className="arch-slide-aside">
-        <div className="arch-uconnect-card">
+      <div className="arch-flow-context">
+        <div className="arch-flow-context-item arch-flow-context-uconnect">
           <img
             src={IMAGES.uconnectLogo.src}
             alt={IMAGES.uconnectLogo.alt}
-            className="arch-uconnect-logo"
+            className="arch-flow-context-logo"
           />
-          <p className="arch-uconnect-caption">Sistema central del ataque</p>
+          <span className="arch-flow-context-text">Sistema central del ataque · Harman International</span>
         </div>
+        <div className="arch-flow-context-divider" aria-hidden="true" />
         <img
           src={IMAGES.logoHarman.src}
           alt={IMAGES.logoHarman.alt}
-          className="arch-harman-logo"
+          className="arch-flow-context-harman"
         />
-        <SlideImage
-          src={IMAGES.jeepCherokee.src}
-          alt={IMAGES.jeepCherokee.alt}
-          className="arch-vehicle-thumb"
-          caption="Vehículo afectado"
-          objectFit="contain"
-          darkBg
-        />
-      </aside>
+      </div>
     </div>
   </SlideLayout>
 );

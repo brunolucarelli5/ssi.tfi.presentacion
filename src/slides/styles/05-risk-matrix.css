@@ -1,0 +1,496 @@
+/* ── Matriz de riesgo rediseñada ── */
+.risk-slide-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1rem;
+  align-items: start;
+  min-height: 0;
+}
+
+.risk-slide.risk-slide-layout {
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 0.75rem;
+  align-items: stretch;
+  height: 100%;
+  max-height: 100%;
+}
+
+.risk-slide .risk-matrix-panel-compact {
+  gap: 0.3rem;
+  min-height: 0;
+  height: 100%;
+}
+
+.risk-slide .risk-matrix-chart {
+  flex: 1;
+  min-height: 0;
+}
+
+.risk-matrix-stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  min-height: 0;
+}
+
+.risk-slide .risk-matrix-stack {
+  flex: 1;
+  min-height: 0;
+}
+
+.risk-slide .risk-matrix-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 0;
+}
+
+.risk-slide .risk-matrix-core {
+  flex: 1;
+  display: flex;
+  gap: 0.35rem;
+  min-height: 0;
+}
+
+.risk-slide .risk-matrix-x-axis {
+  flex-shrink: 0;
+  margin-left: calc(62px + 0.35rem);
+}
+
+.risk-slide .risk-matrix-grid {
+  flex: 1;
+  min-height: 0;
+}
+
+.risk-slide .risk-matrix-row {
+  flex: 1;
+  min-height: 0;
+}
+
+.risk-slide .risk-matrix-cell {
+  aspect-ratio: unset;
+  min-height: 0;
+  height: 100%;
+  padding: 0.12rem;
+}
+
+.risk-slide .risk-matrix-y-labels {
+  width: 62px;
+}
+
+.risk-slide .risk-matrix-axis-text {
+  font-size: 0.48rem;
+}
+
+.risk-slide .risk-matrix-x-labels {
+  flex-shrink: 0;
+}
+
+.risk-slide .risk-matrix-x-title {
+  flex-shrink: 0;
+  font-size: 0.55rem;
+  margin-top: 0.15rem;
+}
+
+.risk-slide .risk-matrix-legend {
+  flex-shrink: 0;
+  justify-content: center;
+  gap: 0.35rem 0.6rem;
+  padding: 0.2rem 0;
+  width: 100%;
+}
+
+.risk-slide .risk-legend-item {
+  font-size: 0.55rem;
+}
+
+.risk-slide .risk-legend-swatch {
+  width: 10px;
+  height: 10px;
+}
+
+.risk-slide .risk-matrix-marker {
+  font-size: 0.55rem;
+  padding: 0.1rem 0.28rem;
+}
+
+.risk-slide .ale-panel {
+  gap: 0.35rem;
+  min-height: 0;
+  height: 100%;
+  justify-content: flex-start;
+}
+
+.risk-slide .ale-cards {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 0;
+}
+
+.risk-slide .ale-panel-title {
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.risk-slide .ale-panel-intro {
+  font-size: 0.68rem;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+.risk-slide .ale-card {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  align-content: center;
+  column-gap: 0.5rem;
+  row-gap: 0.25rem;
+  padding: 0.75rem 0.85rem;
+  min-height: 0;
+}
+
+.risk-slide .ale-card-risk {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  font-size: 0.75rem;
+  margin-bottom: 0;
+  align-self: center;
+}
+
+.risk-slide .ale-card-value {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 1.1rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.risk-slide .ale-card-highlight .ale-card-value {
+  font-size: 1.25rem;
+}
+
+.risk-slide .ale-card-level {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  margin-top: 0;
+  font-size: 0.55rem;
+  padding: 0.15rem 0.4rem;
+}
+
+.risk-slide .ale-panel-footnote {
+  font-size: 0.58rem;
+  line-height: 1.35;
+  margin-top: auto;
+  padding-top: 0.15rem;
+  text-align: center;
+  width: 100%;
+}
+
+.risk-matrix-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.risk-matrix-chart {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.risk-matrix-y-title {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 0.25rem 0;
+}
+
+.risk-matrix-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  min-height: 0;
+}
+
+.risk-matrix-core {
+  flex: 1;
+  display: flex;
+  gap: 0.35rem;
+  min-height: 0;
+}
+
+.risk-matrix-x-axis {
+  flex-shrink: 0;
+  margin-left: calc(72px + 0.35rem);
+}
+
+.risk-matrix-y-labels {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  row-gap: 3px;
+  width: 72px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.risk-matrix-y-label,
+.risk-matrix-x-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+}
+
+.risk-matrix-axis-num {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.risk-matrix-axis-text {
+  font-size: 0.52rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.15;
+}
+
+.risk-matrix-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.risk-matrix-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+}
+
+.risk-matrix-cell {
+  position: relative;
+  aspect-ratio: 1;
+  min-height: 42px;
+  border-radius: 6px;
+  border: 1px solid #ffffff0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+}
+
+.risk-matrix-cell-low { background: #1e3a5f88; }
+.risk-matrix-cell-medium { background: #78350f77; }
+.risk-matrix-cell-high { background: #b4530977; }
+.risk-matrix-cell-critical { background: #991b1b99; }
+
+.risk-matrix-cell-score {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  color: #ffffff55;
+}
+
+.risk-matrix-markers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+}
+
+.risk-matrix-marker {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  color: #fff;
+  line-height: 1;
+}
+
+.risk-matrix-marker-critical { background: var(--danger); }
+.risk-matrix-marker-high { background: var(--warning); color: #1a1a1a; }
+
+.risk-matrix-x-labels {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+  margin-top: 0.35rem;
+}
+
+.risk-matrix-x-title {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.risk-matrix-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0.85rem;
+  padding: 0.35rem 0;
+  width: 100%;
+}
+
+.risk-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+.risk-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.risk-legend-swatch.low { background: #1e3a5f; }
+.risk-legend-swatch.medium { background: #78350f; }
+.risk-legend-swatch.high { background: #b45309; }
+.risk-legend-swatch.critical { background: #991b1b; }
+
+.risk-register {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.risk-register-item {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.3rem 0.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  font-size: 0.68rem;
+}
+
+.risk-register-id {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--jeep);
+}
+
+.risk-register-label {
+  color: var(--text-muted);
+  line-height: 1.25;
+}
+
+.risk-register-score {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+}
+
+.risk-register-score-critical {
+  background: var(--danger-dim);
+  color: var(--danger);
+}
+
+.risk-register-score-high {
+  background: #fbbf2433;
+  color: var(--warning);
+}
+
+.ale-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.ale-panel-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.ale-panel-intro {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.ale-card {
+  padding: 0.65rem 0.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.ale-card-highlight {
+  border-color: #ef444466;
+  background: linear-gradient(135deg, #1a1218, var(--bg-card));
+}
+
+.ale-card-risk {
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.ale-card-value {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--danger);
+  line-height: 1.2;
+}
+
+.ale-card-highlight .ale-card-value {
+  font-size: 1.25rem;
+}
+
+.ale-card-level {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--danger);
+  background: var(--danger-dim);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+}
+
+.ale-panel-footnote {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-top: 0.15rem;
+  text-align: center;
+}
