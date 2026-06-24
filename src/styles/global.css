@@ -24,7 +24,7 @@
   --border-subtle: #1a2436;
   --font: 'DM Sans', system-ui, sans-serif;
   --mono: 'JetBrains Mono', monospace;
-  --slide-radius: 16px;
+  --slide-radius: 0;
   --slide-design-w: 1920px;
   --slide-design-h: 1080px;
   --slide-aspect: 16 / 9;
