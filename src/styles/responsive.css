@@ -1,14 +1,3 @@
-.print-mode .actors-slide,
-.print-mode .timeline-slide,
-.print-mode .impact-slide,
-.print-mode .risk-slide-layout,
-.print-mode .arch-slide-layout,
-.print-mode .forensic-slide-layout,
-.print-mode .vuln-grid,
-.print-mode .rec-grid {
-  grid-template-columns: inherit;
-}
-
 .print-mode .rec-grid {
   grid-template-columns: repeat(5, 1fr);
 }

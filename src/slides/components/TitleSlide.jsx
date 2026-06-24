@@ -1,4 +1,5 @@
 import SlideImage from './SlideImage';
+import { getImageLoadingProps } from '../../utils/pdf-export';
 import { IMAGES } from '../assets/images';
 import './TitleSlide.css';
 
@@ -14,6 +15,7 @@ const TitleSlide = ({ badge, title, subtitle, meta, heroImage = IMAGES.jeepChero
         src={IMAGES.logoUtn.src}
         alt={IMAGES.logoUtn.alt}
         className="title-slide-utn-corner"
+        {...getImageLoadingProps()}
       />
     </div>
 
@@ -24,6 +26,7 @@ const TitleSlide = ({ badge, title, subtitle, meta, heroImage = IMAGES.jeepChero
             src={IMAGES.logoJeep.src}
             alt={IMAGES.logoJeep.alt}
             className="title-logo title-logo-jeep-png"
+            {...getImageLoadingProps()}
           />
         </div>
 

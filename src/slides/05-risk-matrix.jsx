@@ -3,9 +3,9 @@ import RiskMatrix from './components/RiskMatrix';
 import './styles/05-risk-matrix.css';
 
 const ALE_ROWS = [
-  { risk: 'R1 — D-Bus RCE', ale: 'USD 400K', level: 'CRÍTICO' },
-  { risk: 'R2 — Pivoting CAN', ale: 'USD 360K', level: 'CRÍTICO' },
-  { risk: 'R5 — Sin OTA', ale: 'USD 200M', level: 'CRÍTICO', highlight: true },
+  { risk: 'R1 — D-Bus RCE', ale: 'USD 250.000', level: 'CRÍTICO' },
+  { risk: 'R2 — Pivoting CAN', ale: 'USD 360.000', level: 'CRÍTICO' },
+  { risk: 'R5 — Sin OTA', ale: 'USD 200.000.000', level: 'CRÍTICO', highlight: true },
 ];
 
 const Slide05RiskMatrix = () => (

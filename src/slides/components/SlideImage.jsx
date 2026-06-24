@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getImageLoadingProps } from '../../utils/pdf-export';
 import './SlideImage.css';
 
 const SlideImage = ({
@@ -47,7 +48,7 @@ const SlideImage = ({
           src={src}
           alt={alt}
           className={imgClass}
-          loading="lazy"
+          {...getImageLoadingProps()}
           onError={() => setHasError(true)}
         />
         {overlay && <div className="slide-image-overlay">{overlay}</div>}

@@ -3,7 +3,7 @@ He procesado en detalle tanto tu informe como la consigna. Aquí va el diseño c
 ---
 
 # Defensa Oral — TFI SSI: Hackeo Remoto del Jeep Cherokee (2015)
-## Guion Diapositiva por Diapositiva (12 slides)
+## Guion Diapositiva por Diapositiva (13 slides)
 
 ---
 
@@ -12,11 +12,13 @@ He procesado en detalle tanto tu informe como la consigna. Aquí va el diseño c
 **Tiempo estimado:** 45 segundos
 
 **Contenido Visual:**
+- Logo UTN (esquina) y logo Jeep
 - Badge: *TFI — Seguridad en Sistemas de Información*
 - Título: **"Hackeo Remoto del Jeep Cherokee (2015)"**
 - Subtítulo: *Explotación remota de un vehículo de pasajeros sin modificaciones*
-- Meta: Bruno Lucarelli — Leg. 14988 · Ing. Ignacio Daniel Favro · UTN — FR Villa María
-- Imagen del Jeep Cherokee de fondo con overlay oscuro
+- Meta: Autor Bruno Lucarelli — Leg. 14988 · Docente Ing. Ignacio Daniel Favro · Institución UTN — FR Villa María
+- Imagen hero del Jeep Cherokee a la derecha
+- Footer: *Trabajo Final Integrador*
 
 **Guion de Exposición:**
 "Buenas tardes. Mi nombre es Bruno Lucarelli, legajo 14988. El trabajo que presento hoy analiza el hackeo remoto del Jeep Cherokee de 2015, documentado en el whitepaper de Miller y Valasek para IOActive. Lo que hace a este caso único no es que alguien haya 'hackeado un auto': es que lo hizo desde cualquier punto del país, sin acceso físico, explotando fallas sistémicas de diseño en un vehículo de producción comercial. Este análisis lo abordé desde los marcos de la cátedra: gestión de riesgos bajo ISO 27005, respuesta a incidentes bajo NIST SP 800-61, y pericias forenses bajo ISO/IEC 27037 y RFC 3227."
@@ -35,7 +37,7 @@ He procesado en detalle tanto tu informe como la consigna. Aquí va el diseño c
 - Pipeline horizontal de 5 pasos con zonas coloreadas: *Acceso remoto → Head unit Uconnect → Control físico*
 - Pasos: **Red Sprint (Internet/4G)** → **OMAP-DM3730 (QNX + D-Bus)** → **V850ES (Puente SPI)** → **CAN-C (Bus crítico)** → **ABS · EPS · PCM (Seguridad activa)**
 - Lead: *"5 saltos consecutivos — sin gateway, sin ACL, sin autenticación"*
-- Footer: logos Uconnect y Harman International
+- Footer: logos Uconnect (*Sistema central del ataque · Harman International*) y Harman
 
 **Guion de Exposición:**
 "Fiat Chrysler comercializaba desde 2013 el Jeep Cherokee equipado con el sistema Uconnect, desarrollado por Harman International. Esta unidad integraba conectividad celular a través de la red de Sprint. La cadena de compromiso resultante era lineal y sin interrupciones: interfaz celular, procesador OMAP con QNX, chip V850 como puente SPI, bus CAN-C y finalmente las ECUs de seguridad activa — frenos ABS, dirección asistida EPS y motor PCM. No existía ningún gateway de seguridad, ninguna lista de control de acceso, ni ningún mecanismo de autenticación de origen de mensajes que interrumpiera ese camino de ataque."
@@ -53,8 +55,8 @@ He procesado en detalle tanto tu informe como la consigna. Aquí va el diseño c
 **Contenido Visual:**
 - Dos bloques lado a lado unidos por un conector *"Sin gateway"*:
   - **Infotainment** (foto consola central): OMAP · QNX · D-Bus · CAN-IHS (clima, audio)
-  - **Control crítico** (foto motor): V850 · CAN-C · ABS · EPS · PCM
-- Banner de advertencia: *"Sin gateway · Sin ACL · Sin autenticación de origen"*
+  - **Control crítico** (foto motor): V850 · CAN-C · frenos · dirección · motor
+- Banner de advertencia: *"Sin gateway · Sin ACL · Sin autenticación de origen de mensajes"*
 
 **Guion de Exposición:**
 "La vulnerabilidad arquitectónica central va más allá de un servicio mal configurado: la head unit conectaba Internet con los buses de control del vehículo sin ningún gateway de seguridad. El dominio de infotainment agrupaba sistemas de confort — climatización, audio — sobre el bus CAN-IHS. El dominio de control crítico, en cambio, interconectaba los módulos de seguridad activa sobre el CAN-C. El chip Renesas V850ES actuaba como puente directo y sin aislamiento adecuado entre ambos mundos."
@@ -70,12 +72,13 @@ He procesado en detalle tanto tu informe como la consigna. Aquí va el diseño c
 **Tiempo estimado:** 45 segundos
 
 **Contenido Visual:**
-- Hero destacado: **Chris Valasek · Charlie Miller** — IOActive · Artículo con Andy Greenberg en Wired · Financiados por DARPA
-- Grid de ecosistema industrial con logos: FCA (destacado), Sprint (destacado), Harman, QNX, NHTSA, etc.
-- Leyenda: rol central vs. cadena de suministro
+- Título: *"Quién intervino en el incidente"*
+- Hero destacado: **Chris Valasek · Charlie Miller** — IOActive · Artículo con Andy Greenberg en Wired · Financiados por DARPA (logo DARPA)
+- Grid de ecosistema industrial con logos: **FCA** y **Sprint** (destacados), Harman, QNX
+- Leyenda: rol central en el incidente vs. cadena de suministro
 
 **Guion de Exposición:**
-"Los investigadores son Chris Valasek de IOActive y Charlie Miller, ambos con financiamiento previo de DARPA. Su objetivo explícito era refutar el paradigma dominante en la industria: que hackear un vehículo requería acceso físico previo al puerto OBD-II. Al publicar junto con el periodista Andy Greenberg de Wired, forzaron a la industria a reconocer que la conectividad celular en vehículos representaba una superficie de ataque explotable desde cualquier punto del planeta. En el ecosistema industrial intervinieron FCA como fabricante, Sprint como operador celular, Harman como desarrollador del Uconnect, y la NHTSA como regulador que finalmente ordenó el recall."
+"Los investigadores son Chris Valasek de IOActive y Charlie Miller, ambos con financiamiento previo de DARPA. Al publicar junto con el periodista Andy Greenberg de Wired, forzaron a la industria a reconocer que la conectividad celular en vehículos representaba una superficie de ataque explotable desde cualquier punto del planeta. En el ecosistema industrial intervinieron FCA como fabricante, Sprint como operador celular, Harman como desarrollador del Uconnect, y QNX como sistema operativo del OMAP. La NHTSA, como regulador que ordenó el recall, aparece en la cronología y el impacto de negocio que veremos a continuación."
 
 ---
 
@@ -84,17 +87,19 @@ He procesado en detalle tanto tu informe como la consigna. Aquí va el diseño c
 **Tiempo estimado:** 45 segundos
 
 **Contenido Visual:**
+- Título: *"De la divulgación al recall"*
+- Subtítulo: *Miller y Valasek refutaron que hackear un auto requería acceso físico al OBD-II*
 - Timeline vertical con 5 hitos:
-  - `Oct 2014` — Divulgación: reporte responsable del D-Bus a FCA
-  - `Mar 2015` — Investigación: reprogramación del V850 informada
-  - `16 Jul 2015` — Mitigación: parche firmware 15.26.1
-  - `21 Jul 2015` — Crisis pública: publicación en Wired (logo Wired)
-  - `24 Jul 2015` — Respuesta: Sprint bloquea :6667 · Recall NHTSA
+  - `Octubre de 2014` — Divulgación: reporte responsable del D-Bus a FCA
+  - `Marzo de 2015` — Investigación: reprogramación del V850 informada
+  - `16 de Julio de 2015` — Mitigación: parche firmware 15.26.1
+  - `21 de Julio de 2015` — Crisis pública: publicación en Wired (logo Wired)
+  - `24 de Julio de 2015` — Respuesta: Sprint bloquea el puerto 6667 · Recall NHTSA
 - Aside: **5 días** entre parche y publicación Wired · **3 días** hasta bloqueo Sprint y recall
 - Nota: *"Ventana crítica donde el vector remoto seguía activo para millones de vehículos"*
 
 **Guion de Exposición:**
-"La cronología muestra una respuesta reactiva con ventanas críticas peligrosas. La divulgación responsable comenzó en octubre de 2014. FCA recibió el parche de firmware 15.26.1 el 16 de julio de 2015, pero la demostración pública en Wired ocurrió cinco días después, el 21 de julio. Solo tres días más tarde, el 24 de julio, Sprint bloqueó el puerto 6667 y FCA anunció el recall oficial. Durante esas ventanas, el vector de ataque remoto seguía activo para millones de vehículos en la flota."
+"La cronología muestra una respuesta reactiva con ventanas críticas peligrosas. Miller y Valasek demostraron que hackear un vehículo no requería acceso físico al OBD-II. La divulgación responsable comenzó en octubre de 2014. FCA recibió el parche de firmware 15.26.1 el 16 de julio de 2015, pero la demostración pública en Wired ocurrió cinco días después, el 21 de julio. Solo tres días más tarde, el 24 de julio, Sprint bloqueó el puerto 6667 y FCA anunció el recall oficial ante la NHTSA. Durante esas ventanas, el vector de ataque remoto seguía activo para millones de vehículos en la flota."
 
 ---
 
@@ -103,11 +108,12 @@ He procesado en detalle tanto tu informe como la consigna. Aquí va el diseño c
 **Tiempo estimado:** 45 segundos
 
 **Contenido Visual:**
+- Título: *"Costo de negocio y alcance del recall"*
 - Imagen del Jeep Cherokee con enlace al PDF del recall NHTSA 15V461000
 - Chips de marcas afectadas: Jeep, Dodge, Ram, Chrysler
 - Stat cards:
-  - **USD 200M** — Costo estimado del recall físico
-  - **1.4M** — Vehículos afectados en Norteamérica
+  - **USD 200.000.000** — Costo estimado del recall físico
+  - **1.400.000** — Vehículos afectados en Norteamérica
 - Quote: distribución de parches por USB a concesionarios, sin OTA
 - Footnote: primer recall de ciberseguridad automotriz a escala masiva
 
@@ -125,11 +131,12 @@ He procesado en detalle tanto tu informe como la consigna. Aquí va el diseño c
 **Tiempo estimado:** 1 minuto 30 segundos
 
 **Contenido Visual:**
-- Tres tarjetas verticales con badges CIA:
-  - 🔓 **R1 — D-Bus expuesto** | Puerto TCP 6667 con auth ANONYMOUS en Sprint | RCE con shell root | C · I · D
-  - 🔀 **R2 — Sin segmentación CAN** | Head unit conectada a CAN-C sin gateway | Pivoting hacia ECUs críticas | I · D
-  - 🔑 **R3 — Sin Secure Boot V850** | Firmware reemplazable por SPI sin firma | Ataque físico persistente | I · D
-- Footer: *"Encadenadas → Control físico total del vehículo en movimiento"*
+- Título: *"Tres vulnerabilidades encadenadas"*
+- Tres tarjetas con badges CIA y logo de marca (Sprint, Harman, QNX):
+  - 🔓 **R1 — D-Bus expuesto** | Puerto TCP 6667 con auth ANONYMOUS en la red celular de Sprint | Ejecución remota de código con shell root | C · I · D
+  - 🔀 **R2 — Sin segmentación CAN** | Head unit conectada directamente a CAN-C sin gateway | Pivoting desde OMAP hacia ECUs críticas | I · D
+  - 🔑 **R3 — Sin Secure Boot V850** | Firmware reemplazable por SPI sin verificación criptográfica | Compromiso lógico convertido en ataque físico persistente | I · D
+- Footer: *"R1 + R2 + R3 → Control de frenos, dirección y motor sin acceso físico"*
 
 **Guion de Exposición:**
 "El ataque se construye sobre tres vulnerabilidades encadenadas. La primera es la exposición del servicio D-Bus en el puerto TCP 6667 a través de la red celular pública de Sprint, con configuración de autenticación ANONYMOUS. Esto habilitó la invocación remota del método execute del servicio NavTrailService, logrando ejecución de código arbitrario con privilegios de administrador root. Es una violación directa del principio de mínima superficie de ataque de OWASP Embedded Security.
@@ -149,12 +156,13 @@ La tercera vulnerabilidad sella la cadena: el firmware del chip V850 podía ser 
 **Tiempo estimado:** 1 minuto 45 segundos
 
 **Contenido Visual:**
-- Mitad izquierda: Matriz de calor 5×5 con riesgos R1–R5 proyectados en sus coordenadas P×I, leyenda de colores centrada (Bajo 1–7 · Medio 8–14 · Alto 15–19 · Crítico 20–25)
-- Mitad derecha: Panel ALE con tres tarjetas expandidas:
+- Título: *"Matriz de riesgo inherente y ALE"*
+- Mitad izquierda: Matriz de calor 5×5 con riesgos R1–R5 proyectados en sus coordenadas P×I, leyenda de colores (Bajo 1–7 · Medio 8–14 · Alto 15–19 · Crítico 20–25)
+- Mitad derecha: Panel ALE — *"El recall físico de 1,4M vehículos domina el análisis cuantitativo"*
   - **R1 — D-Bus RCE** → USD 400K · CRÍTICO
   - **R2 — Pivoting CAN** → USD 360K · CRÍTICO
   - **R5 — Sin OTA** → USD 200M · CRÍTICO (destacada)
-- Footnote centrado: *"R1–R4: crítico (15–25 pts) · R5: alto (16 pts) · ROSI OTA: abismalmente positivo"*
+- Footnote: *"R1–R4: crítico (15–25 pts) · R5: alto (16 pts) · ROSI OTA: abismalmente positivo"*
 - Subtítulo: *"ISO 31000 / ISO/IEC 27005 · Riesgo = Probabilidad × Impacto (escala 1–5)"*
 
 **Guion de Exposición:**
@@ -177,23 +185,24 @@ Complementé el análisis cualitativo con el modelo cuantitativo ALE: Annualized
 **Tiempo estimado:** 1 minuto 30 segundos
 
 **Contenido Visual:**
-- Logos FCA y Sprint en header
-- Tabla de 4 fases con evaluación semáforo:
-  - 1. Preparación → **DEFICIENTE** — Sin CSIRT ni SOC vehicular
-  - 2. Detección y análisis → **AUSENTE** — Sin SIEM/IDS. 100% divulgación externa
-  - 3. Contención / erradicación → **PARCIAL** — Sprint bloqueó :6667; parche efectivo pero tardío
-  - 4. Recuperación / post-incidente → **DEFICIENTE** — Recall manual por USB. Sin OTA
+- Título: *"Evaluación según NIST SP 800-61"*
+- Lista de 4 fases con evaluación semáforo:
+  - 1. Preparación → **Deficiente** — Sin CSIRT ni SOC vehicular. Vulnerabilidad descubierta por investigadores externos
+  - 2. Detección y análisis → **Ausente** — Sin SIEM ni IDS. Dependencia total de la divulgación de Miller y Valasek
+  - 3. Contención / erradicación → **Parcial** — Sprint bloqueó el puerto 6667 (24 jul). Parche 15.26.1 efectivo, pero tardío
+  - 4. Recuperación / post-incidente → **Deficiente** — Recall manual por USB. Sin OTA. Sin lecciones aprendidas formales documentadas
+- Aside: **3/4** fases deficientes o ausentes · **0 %** detección interna · Nota sobre respuesta reactiva · Marco: **NIST SP 800-61 Rev. 2**
 
 **Guion de Exposición:**
-"La evaluación de la respuesta al incidente se realiza contrastando las acciones de FCA y Sprint contra las cuatro fases del ciclo de vida del NIST SP 800-61, tal como se abordó en la cátedra.
+"La evaluación de la respuesta al incidente se realiza contrastando las acciones de FCA y Sprint contra las cuatro fases del NIST SP 800-61 Rev. 2, tal como se abordó en la cátedra. Como resumen: tres de cuatro fases resultan deficientes o ausentes, y la detección interna fue del cero por ciento — todo llegó por divulgación externa.
 
-En Preparación: DEFICIENTE. FCA carecía de un CSIRT o SOC con capacidad de detección vehicular proactiva. La vulnerabilidad fue descubierta íntegramente por investigadores externos.
+En Preparación: deficiente. FCA carecía de un CSIRT o SOC con capacidad de detección vehicular proactiva.
 
-En Detección y Análisis: AUSENTE. FCA no contó con SIEM ni IDS que detectaran la actividad maliciosa. Dependencia total de la divulgación externa de Miller y Valasek.
+En Detección y Análisis: ausente. FCA no contó con SIEM ni IDS que detectaran la actividad maliciosa.
 
-En Contención y Erradicación: el resultado es mixto. La contención de Sprint, bloquear el puerto 6667 en la red celular el 24 de julio de 2015, fue efectiva a corto plazo pero no eliminó la vulnerabilidad subyacente en vehículos sin parchear. El parche de firmware versión 15.26.1 fue aceptable en cuanto a efectividad técnica, pero tardío en relación al período de exposición.
+En Contención y Erradicación: parcial. Sprint bloqueó el puerto 6667 el 24 de julio de 2015, lo cual fue efectivo a corto plazo pero no eliminó la vulnerabilidad en vehículos sin parchear. El parche 15.26.1 fue técnicamente aceptable, pero tardío.
 
-En Recuperación y Post-incidente: DEFICIENTE. La ausencia de OTA redujo drásticamente la tasa de adopción del parche. Los vehículos sin parchear permanecieron vulnerables a ataques por Wi-Fi incluso después del bloqueo de Sprint. No se documentaron públicamente lecciones aprendidas formales."
+En Recuperación y Post-incidente: deficiente. La ausencia de OTA redujo la tasa de adopción del parche. Los vehículos sin parchear permanecieron vulnerables incluso por Wi-Fi después del bloqueo de Sprint. No se documentaron lecciones aprendidas formales."
 
 **🛡 Escudo Defensivo:**
 - *¿Qué hubiera cambiado si FCA tenía un CSIRT activo antes del incidente?*
@@ -206,12 +215,14 @@ En Recuperación y Post-incidente: DEFICIENTE. La ausencia de OTA redujo drásti
 **Tiempo estimado:** 1 minuto
 
 **Contenido Visual:**
-- Tres capas de volatilidad (RFC 3227 / ISO/IEC 27037):
-  - 🔴 **Alta volatilidad:** RAM OMAP-DM3730 · Caché ARP · Sesiones D-Bus en /dev/shmem
-  - 🟡 **Volatilidad media:** Logs QNX (slogger) · Sistema ETFS · Tráfico celular Sprint (pcap)
-  - 🟢 **Baja volatilidad:** Imagen NAND flash · Dump firmware V850 · Bus logs CAN vía OBD-II
-- Imagen del vehículo + logo QNX
-- Nota de cadena de custodia: jaula de Faraday, write-blocker, CPPN Arts. 253–276
+- Título: *"Artefactos y cadena de custodia"*
+- Subtítulo: *RFC 3227 · ISO/IEC 27037 · CPPN Arts. 253–276*
+- Tres capas de volatilidad (mayor → menor):
+  - **Alta volatilidad:** RAM OMAP-DM3730 · Caché ARP · Sesiones D-Bus · /dev/shmem
+  - **Volatilidad media:** Logs QNX (slogger) · Sistema ETFS · Tráfico celular Sprint (pcap)
+  - **Baja volatilidad:** Imagen NAND flash · Dump firmware V850 · Bus logs CAN vía OBD-II
+- Imagen del vehículo — *"El vehículo completo es portador de evidencia digital"*
+- Cadena de custodia: Jaula de Faraday · Write-blocker · SHA-256 antes y después
 
 **Guion de Exposición:**
 "La investigación forense de este incidente presenta desafíos específicos derivados de su naturaleza embebida en hardware vehicular. Los artefactos forenses se ordenan según la RFC 3227 y la ISO/IEC 27037, de mayor a menor volatilidad.
@@ -222,7 +233,7 @@ Con volatilidad media: los logs del slogger de QNX y el sistema de archivos ETFS
 
 Con baja volatilidad: la imagen forense bit a bit del chip NAND flash, que es la fuente principal para análisis de firmware y recuperación de archivos eliminados.
 
-En cuanto a cadena de custodia, el vehículo completo debe tratarse como dispositivo portador de evidencia, almacenado en jaula de Faraday para impedir conectividad celular y Wi-Fi. La adquisición de la NAND debe realizarse con write-blocker. En el contexto argentino, cada intervención debe documentarse según los requisitos del CPPN artículos 253 a 276 para validez pericial."
+En cuanto a cadena de custodia, el vehículo completo debe tratarse como dispositivo portador de evidencia, almacenado en jaula de Faraday para impedir conectividad celular y Wi-Fi. La adquisición de la NAND debe realizarse con write-blocker, tomando hash SHA-256 antes y después para verificar integridad. En el contexto argentino, cada intervención debe documentarse según los requisitos del CPPN artículos 253 a 276 para validez pericial."
 
 **🛡 Escudo Defensivo:**
 - *¿Por qué es contraindicado usar el propio sistema de actualización del Uconnect como vía de adquisición forense?*
@@ -235,12 +246,13 @@ En cuanto a cadena de custodia, el vehículo completo debe tratarse como disposi
 **Tiempo estimado:** 1 minuto 30 segundos
 
 **Contenido Visual:**
+- Título: *"Mitigaciones técnicas y organizacionales"*
 - Grid de 5 tarjetas con referencia al riesgo mitigado:
-  - 🔒 **Gateway CAN** — Filtrar mensajes entre infotainment y control · AUTOSAR SecOC · *Mitiga R2*
-  - 🔐 **Hardening D-Bus** — Sin exposición en red externa · OWASP Embedded · *Mitiga R1*
-  - 🏛 **Secure Boot V850** — Firma criptográfica + HSM · ISO/SAE 21434 · *Mitiga R3*
-  - 📡 **OTA segura** — Entrega automática + verificación + rollback · UNECE WP.29 · *Mitiga R5*
-  - 🏢 **Secure SDLC + CVD** — Threat modeling desde diseño · ISO 27001 Ctrl 8.25 · *Organizacional*
+  - 🔒 **Gateway CAN** — Filtrar mensajes entre infotainment y control. Hardware independiente del OMAP · *Mitiga R2*
+  - 🔐 **Hardening D-Bus** — Sin exposición en red externa. Eliminar método execute de NavTrailService · *Mitiga R1*
+  - 🏛 **Secure Boot V850** — Firma criptográfica, challenge-response y HSM para claves · *Mitiga R3*
+  - 📡 **OTA segura** — Entrega automática, verificación criptográfica y rollback ante fallos · *Mitiga R5*
+  - 🏢 **Secure SDLC + CVD** — Threat modeling desde diseño. Canal formal de divulgación coordinada · *Organizacional*
 
 **Guion de Exposición:**
 "Las propuestas de mejora abordan las causas raíz identificadas en cada riesgo, no síntomas superficiales.
@@ -261,21 +273,29 @@ Y la recomendación organizacional es adoptar un Secure SDLC bajo ISO/SAE 21434 
 
 ---
 
-**Diapositiva 12: Cierre — Síntesis y Lección Central**
+**Diapositiva 12: Cierre — Lección Central**
 
-**Tiempo estimado:** 45 segundos
+**Tiempo estimado:** 30 segundos
 
 **Contenido Visual:**
-- Quote central: *"El costo de diseñar bien es siempre fraccionariamente menor al costo de remediar tarde."*
-- Tres marcos abordados:
-  - 🧮 Gestión de riesgos — ISO 27005 · ALE · R1–R5
-  - 🔍 Respuesta al incidente — NIST SP 800-61
-  - 📋 Pericias forenses — ISO/IEC 27037 · RFC 3227
-- Barra de impacto: **1.4M vehículos · USD 200M en recall · evitable con OTA y Secure Boot**
-- Imagen del Jeep Cherokee + logo UTN
+- Título: *"Lección central del análisis"*
+- Quote central a pantalla completa: *"El costo de diseñar bien es siempre fraccionariamente menor al costo de remediar tarde."*
 
 **Guion de Exposición:**
-"Para cerrar: el caso Jeep Cherokee no es la historia de un ataque genial. Es la historia de una organización que no incorporó la ciberseguridad como disciplina integral en su ciclo de vida de producto, y pagó las consecuencias en términos de impacto físico potencial sobre vidas humanas, y un recall de 1.4 millones de unidades con pérdidas que superaron los 200 millones de dólares. La lección central del análisis cuantitativo ALE es que el ROSI de diseñar bien, implementando OTA, Secure Boot y segmentación CAN desde el inicio, habría sido abismalmente superior a la inversión en remediación tardía. Quedo a disposición para la ronda de preguntas."
+"Para cerrar: el caso Jeep Cherokee no es la historia de un ataque genial. Es la historia de una organización que no incorporó la ciberseguridad como disciplina integral en su ciclo de vida de producto, y pagó las consecuencias con impacto físico potencial sobre vidas humanas, un recall de 1.4 millones de unidades y pérdidas que superaron los 200 millones de dólares. La lección central — la que resume toda la presentación — es la que ven en pantalla: diseñar bien desde el inicio, con OTA, Secure Boot y segmentación CAN, habría costado una fracción de lo que costó remediar tarde."
+
+---
+
+**Diapositiva 13: Agradecimiento**
+
+**Tiempo estimado:** 15 segundos
+
+**Contenido Visual:**
+- Título: **"Gracias"**
+- Subtítulo: *"Quedo a disposición para preguntas"*
+
+**Guion de Exposición:**
+"Muchas gracias. Quedo a disposición para preguntas."
 
 ---
 
@@ -294,8 +314,9 @@ Y la recomendación organizacional es adoptar un Secure SDLC bajo ISO/SAE 21434 
 | 9 — Respuesta al Incidente NIST | 1:30 |
 | 10 — Pericias Forenses | 1:00 |
 | 11 — Propuestas de Mejora | 1:30 |
-| 12 — Cierre | 0:45 |
-| **TOTAL** | **~12:30** |
+| 12 — Cierre | 0:30 |
+| 13 — Agradecimiento | 0:15 |
+| **TOTAL** | **~12:45** |
 
 ---
 

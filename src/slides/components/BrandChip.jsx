@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getImageLoadingProps } from '../../utils/pdf-export';
 import { IMAGES } from '../assets/images';
 import './BrandChip.css';
 
@@ -13,7 +14,7 @@ const BrandChip = ({ imageKey, label, detail, critical = false }) => {
           src={asset.src}
           alt=""
           className={`brand-chip-logo${asset.lightBg ? ' brand-chip-logo-light' : ''}${asset.invert ? ' brand-chip-logo-invert' : ''}`}
-          loading="lazy"
+          {...getImageLoadingProps()}
           onError={() => setHasError(true)}
           aria-hidden="true"
         />

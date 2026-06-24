@@ -263,13 +263,6 @@
   margin-right: 0.35rem;
 }
 
-.print-mode .slide-split,
-.print-mode .actors-layout,
-.print-mode .closing-layout,
-.print-mode .title-slide-layout {
-  grid-template-columns: inherit;
-}
-
 .print-mode .logo-grid {
   grid-template-columns: repeat(3, 1fr);
 }

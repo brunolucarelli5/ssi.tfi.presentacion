@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getImageLoadingProps } from '../../utils/pdf-export';
 import { IMAGES } from '../assets/images';
 
 const LogoBadge = ({ imageKey, name, role, size = 'md', highlight = false, showName = true }) => {
@@ -43,7 +44,7 @@ const LogoBadge = ({ imageKey, name, role, size = 'md', highlight = false, showN
         src={asset.src}
         alt={asset.alt}
         className={imgClass}
-        loading="lazy"
+        {...getImageLoadingProps()}
         onError={handleError}
       />
       {showName && <span className="logo-badge-name">{name}</span>}

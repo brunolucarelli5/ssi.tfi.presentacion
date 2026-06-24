@@ -1,58 +1,50 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { slides } from './slides';
 
-const isPdfMode = new URLSearchParams(window.location.search).has('pdf');
-const shouldAutoPrint = new URLSearchParams(window.location.search).has('print');
+const searchParams = new URLSearchParams(window.location.search);
+const isPdfMode = searchParams.has('pdf');
+const isCaptureMode = searchParams.has('capture');
+const shouldAutoPrint = searchParams.has('print');
+const captureSlideIndex = isCaptureMode
+  ? Number.parseInt(searchParams.get('slide') ?? '0', 10)
+  : null;
 
-const SLIDE_DESIGN_WIDTH = 1920;
-const SLIDE_DESIGN_HEIGHT = 1080;
-const SLIDE_SAFE_MARGIN = 48;
+const PresentationSlide = ({ SlideComponent, slideIndex }) => (
+  <div
+    className="presentation"
+    data-capture-ready="true"
+    data-slide-index={slideIndex}
+    data-slide-count={slides.length}
+  >
+    <div className="slide-container">
+      <div className="slide">
+        <SlideComponent />
+      </div>
+    </div>
+  </div>
+);
 
-const PrintSlide = ({ SlideComponent, index }) => {
-  const innerRef = useRef(null);
-  const slideRef = useRef(null);
-
-  useEffect(() => {
-    const fitSlide = () => {
-      const inner = innerRef.current;
-      const slide = slideRef.current;
-      if (!inner || !slide) {
-        return;
-      }
-
-      slide.style.zoom = '1';
-      const availableWidth = inner.clientWidth - SLIDE_SAFE_MARGIN * 2;
-      const availableHeight = inner.clientHeight - SLIDE_SAFE_MARGIN * 2;
-      const scale = Math.min(
-        availableWidth / SLIDE_DESIGN_WIDTH,
-        availableHeight / SLIDE_DESIGN_HEIGHT,
-      );
-      slide.style.zoom = String(Number.isFinite(scale) ? scale : 1);
-    };
-
-    fitSlide();
-    const frame = window.requestAnimationFrame(fitSlide);
-    const timers = [100, 400, 900].map((delay) => window.setTimeout(fitSlide, delay));
-    document.fonts.ready.then(fitSlide);
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-      timers.forEach((timer) => window.clearTimeout(timer));
-    };
-  }, []);
-
-  return (
-    <section className="print-slide" aria-label={`Diapositiva ${index + 1}`}>
-      <div className="print-slide-inner" ref={innerRef}>
-        <div className="slide" ref={slideRef}>
+const PrintSlide = ({ SlideComponent, index }) => (
+  <section className="print-slide" aria-label={`Diapositiva ${index + 1}`}>
+    <div className="presentation print-slide-stage">
+      <div className="slide-container">
+        <div className="slide">
           <SlideComponent />
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 const PrintView = () => {
+  useEffect(() => {
+    document.documentElement.classList.add('pdf-export');
+
+    return () => {
+      document.documentElement.classList.remove('pdf-export');
+    };
+  }, []);
+
   useEffect(() => {
     if (!shouldAutoPrint) {
       return undefined;
@@ -66,7 +58,7 @@ const PrintView = () => {
   }, []);
 
   return (
-    <div className="presentation print-mode">
+    <div className="print-mode" data-slide-count={slides.length}>
       {slides.map((SlideComponent, index) => (
         <PrintSlide key={index} SlideComponent={SlideComponent} index={index} />
       ))}
@@ -87,7 +79,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (isPdfMode) {
+    if (isPdfMode || isCaptureMode) {
       return undefined;
     }
 
@@ -113,6 +105,20 @@ const App = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleNext, handlePrev, totalSlides]);
+
+  if (isCaptureMode) {
+    const slideIndex = Number.isFinite(captureSlideIndex)
+      ? Math.min(Math.max(captureSlideIndex, 0), totalSlides - 1)
+      : 0;
+    const CaptureSlideComponent = slides[slideIndex];
+
+    return (
+      <PresentationSlide
+        SlideComponent={CaptureSlideComponent}
+        slideIndex={slideIndex}
+      />
+    );
+  }
 
   if (isPdfMode) {
     return <PrintView />;

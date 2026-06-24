@@ -1,17 +1,24 @@
 import { spawn } from 'node:child_process';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import http from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import puppeteer from 'puppeteer';
+import { PDFDocument } from 'pdf-lib';
+import { chromium } from 'playwright';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
-const distDir = path.join(rootDir, 'dist');
 const outputDir = path.join(rootDir, 'export');
 const outputFile = path.join(outputDir, 'presentacion-jeep-cherokee.pdf');
 const port = 4173;
-const previewUrl = `http://127.0.0.1:${port}/?pdf=1`;
+const baseUrl = `http://127.0.0.1:${port}`;
+const SLIDE_WIDTH = 1920;
+const SLIDE_HEIGHT = 1080;
+/** Zoom del navegador en pantalla completa (1.5 = 150%). */
+const BROWSER_ZOOM = 1.5;
+const LAYOUT_WIDTH = Math.round(SLIDE_WIDTH / BROWSER_ZOOM);
+const LAYOUT_HEIGHT = Math.round(SLIDE_HEIGHT / BROWSER_ZOOM);
+const HEADLESS = process.env.PDF_HEADLESS !== '0';
 
 const runCommand = (command, args, options = {}) => new Promise((resolve, reject) => {
   const child = spawn(command, args, {
@@ -37,7 +44,7 @@ const waitForServer = async () => {
 
   while (Date.now() < deadline) {
     const isReady = await new Promise((resolve) => {
-      const request = http.get(previewUrl, (response) => {
+      const request = http.get(`${baseUrl}/?capture=1&slide=0`, (response) => {
         response.resume();
         resolve(response.statusCode >= 200 && response.statusCode < 500);
       });
@@ -58,7 +65,57 @@ const waitForServer = async () => {
     });
   }
 
-  throw new Error(`No se pudo conectar a ${previewUrl}`);
+  throw new Error(`No se pudo conectar a ${baseUrl}`);
+};
+
+const waitForCaptureReady = async (page) => {
+  await page.waitForSelector('[data-capture-ready="true"]', { timeout: 30000 });
+  await page.waitForFunction(() => document.fonts.ready);
+  await page.waitForFunction(() => (
+    [...document.images].every((image) => image.complete && image.naturalWidth > 0)
+  ), { timeout: 30000 });
+};
+
+const captureSlideCount = async (page) => {
+  const slideCount = await page.locator('[data-slide-count]').first().evaluate(
+    (element) => Number.parseInt(element.dataset.slideCount ?? '0', 10),
+  );
+
+  if (!Number.isFinite(slideCount) || slideCount < 1) {
+    throw new Error('No se pudo determinar la cantidad de diapositivas');
+  }
+
+  return slideCount;
+};
+
+const buildPdfFromScreenshots = async (page, slideCount) => {
+  const pdfDoc = await PDFDocument.create();
+
+  for (let index = 0; index < slideCount; index += 1) {
+    const slideUrl = `${baseUrl}/?capture=1&slide=${index}`;
+    await page.goto(slideUrl, { waitUntil: 'networkidle', timeout: 60000 });
+    await waitForCaptureReady(page);
+
+    const pngBuffer = await page.screenshot({
+      type: 'png',
+      animations: 'disabled',
+      scale: 'device',
+    });
+
+    const image = await pdfDoc.embedPng(pngBuffer);
+    const pdfPage = pdfDoc.addPage([SLIDE_WIDTH, SLIDE_HEIGHT]);
+
+    pdfPage.drawImage(image, {
+      x: 0,
+      y: 0,
+      width: SLIDE_WIDTH,
+      height: SLIDE_HEIGHT,
+    });
+
+    console.log(`  capturada diapositiva ${index + 1}/${slideCount}`);
+  }
+
+  return pdfDoc.save();
 };
 
 const exportPdf = async () => {
@@ -72,44 +129,48 @@ const exportPdf = async () => {
     shell: false,
   });
 
+  let browser;
+
   try {
     await waitForServer();
     await mkdir(outputDir, { recursive: true });
 
-    console.log('Renderizando PDF...');
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    console.log(
+      `Capturando ${SLIDE_WIDTH}x${SLIDE_HEIGHT}px (layout ${LAYOUT_WIDTH}x${LAYOUT_HEIGHT}, zoom ${BROWSER_ZOOM * 100}%)...`,
+    );
+    browser = await chromium.launch({
+      headless: HEADLESS,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        `--window-size=${SLIDE_WIDTH},${SLIDE_HEIGHT}`,
+      ],
     });
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1920, height: 1080, deviceScaleFactor: 1 });
-    await page.goto(previewUrl, { waitUntil: 'networkidle0' });
-    await page.emulateMediaType('print');
-    await page.evaluate(async () => {
-      await document.fonts.ready;
-      window.dispatchEvent(new Event('resize'));
+    const context = await browser.newContext({
+      viewport: { width: LAYOUT_WIDTH, height: LAYOUT_HEIGHT },
+      deviceScaleFactor: BROWSER_ZOOM,
     });
-    await page.waitForFunction(() => {
-      const slideElements = document.querySelectorAll('.print-mode .slide');
-      return slideElements.length === 10
-        && Array.from(slideElements).every((slide) => parseFloat(slide.style.zoom) > 0);
-    }, { timeout: 15000 });
+    const page = await context.newPage();
 
-    await page.pdf({
-      path: outputFile,
-      printBackground: true,
-      preferCSSPageSize: true,
-      margin: { top: 0, right: 0, bottom: 0, left: 0 },
-    });
+    await page.goto(`${baseUrl}/?capture=1&slide=0`, { waitUntil: 'networkidle', timeout: 60000 });
+    const slideCount = await captureSlideCount(page);
+
+    const pdfBytes = await buildPdfFromScreenshots(page, slideCount);
+    await writeFile(outputFile, pdfBytes);
 
     await browser.close();
+    browser = undefined;
     console.log(`PDF exportado en: ${outputFile}`);
   } finally {
+    if (browser) {
+      await browser.close().catch(() => undefined);
+    }
+
     previewProcess.kill('SIGTERM');
   }
 };
 
-exportPdf().catch(async (error) => {
+exportPdf().catch((error) => {
   console.error(error.message);
   process.exitCode = 1;
 });
