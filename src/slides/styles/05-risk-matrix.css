@@ -1,4 +1,8 @@
 /* ── Matriz de riesgo rediseñada ── */
+.slide-body:has(> .risk-slide-layout) {
+  justify-content: flex-start;
+}
+
 .risk-slide-layout {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
@@ -13,6 +17,7 @@
   align-items: stretch;
   height: 100%;
   max-height: 100%;
+  padding-bottom: 0.75rem;
 }
 
 .risk-slide .risk-matrix-panel-compact {
