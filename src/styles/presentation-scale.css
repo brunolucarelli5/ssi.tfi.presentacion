@@ -381,41 +381,16 @@
   font-size: 1.4rem;
 }
 
-.closing-quote-main {
-  font-size: clamp(1.25rem, 2.8vw, 1.65rem);
+.closing-quote-hero {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
 }
 
-.closing-framework-label {
-  font-size: 0.92rem;
+.thankyou-title {
+  font-size: clamp(3rem, 7vw, 4.5rem);
 }
 
-.closing-framework-detail {
-  font-size: 0.72rem;
-}
-
-.closing-impact-bar {
-  font-size: 0.92rem;
-}
-
-.closing-contact {
-  font-size: 0.95rem;
-}
-
-.closing-layout-v2 {
-  grid-template-columns: 1fr 200px !important;
-}
-
-.closing-vehicle .slide-image-frame {
-  min-height: 170px;
-}
-
-.closing-vehicle .slide-image-img-contain {
-  max-height: 185px;
-}
-
-.closing-logo {
-  height: 38px;
-  max-width: 110px;
+.thankyou-subtitle {
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
 }
 
 .slide-image-img {

@@ -38,7 +38,7 @@ const Slide04Vulnerabilities = () => (
     title="Tres vulnerabilidades encadenadas"
     subtitle="Cada falla habilita la siguiente hasta alcanzar control físico del vehículo en movimiento"
     slideNumber={7}
-    totalSlides={12}
+    totalSlides={13}
   >
     <div className="vuln-grid">
       {VULNERABILITIES.map((vuln) => (

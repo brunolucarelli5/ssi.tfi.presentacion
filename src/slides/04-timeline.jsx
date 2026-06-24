@@ -44,7 +44,7 @@ const Slide04Timeline = () => (
     title="De la divulgación al recall"
     subtitle="Miller y Valasek refutaron que hackear un auto requería acceso físico al OBD-II"
     slideNumber={5}
-    totalSlides={12}
+    totalSlides={13}
   >
     <div className="timeline-slide">
       <ol className="timeline-v2" aria-label="Cronología del incidente">

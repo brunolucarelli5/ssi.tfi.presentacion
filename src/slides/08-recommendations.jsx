@@ -41,7 +41,7 @@ const Slide08Recommendations = () => (
     title="Mitigaciones técnicas y organizacionales"
     subtitle="Cada recomendación ataca la causa raíz de un riesgo identificado"
     slideNumber={11}
-    totalSlides={12}
+    totalSlides={13}
   >
     <div className="rec-grid">
       {RECOMMENDATIONS.map((rec) => (

@@ -34,7 +34,7 @@ const Slide06Nist = () => (
     title="Evaluación según NIST SP 800-61"
     subtitle="Cuatro fases del ciclo de vida de respuesta a incidentes aplicadas al caso Jeep"
     slideNumber={9}
-    totalSlides={12}
+    totalSlides={13}
   >
     <div className="nist-slide">
       <ol className="nist-phases" aria-label="Fases NIST SP 800-61">

@@ -4,10 +4,8 @@
 .print-mode .risk-slide-layout,
 .print-mode .arch-slide-layout,
 .print-mode .forensic-slide-layout,
-.print-mode .closing-layout-v2,
 .print-mode .vuln-grid,
-.print-mode .rec-grid,
-.print-mode .closing-frameworks {
+.print-mode .rec-grid {
   grid-template-columns: inherit;
 }
 
@@ -22,7 +20,6 @@
   .risk-slide-layout,
   .arch-slide-layout,
   .forensic-slide-layout,
-  .closing-layout-v2,
   .arch-domains {
     grid-template-columns: 1fr;
   }
@@ -81,7 +78,6 @@
 
   .vuln-grid,
   .rec-grid,
-  .closing-frameworks,
   .logo-grid-compact {
     grid-template-columns: 1fr;
   }

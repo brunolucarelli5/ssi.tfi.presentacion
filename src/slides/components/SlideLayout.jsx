@@ -3,7 +3,7 @@ const SlideLayout = ({
   title,
   subtitle,
   slideNumber,
-  totalSlides = 12,
+  totalSlides = 13,
   children,
 }) => (
   <div className="slide-frame">

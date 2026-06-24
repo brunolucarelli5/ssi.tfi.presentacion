@@ -14,7 +14,7 @@ const Slide05RiskMatrix = () => (
     title="Matriz de riesgo inherente y ALE"
     subtitle="ISO 31000 / ISO/IEC 27005 · Riesgo = Probabilidad × Impacto (escala 1–5)"
     slideNumber={8}
-    totalSlides={12}
+    totalSlides={13}
   >
     <div className="risk-slide-layout risk-slide">
       <RiskMatrix compact />

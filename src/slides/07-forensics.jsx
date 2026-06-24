@@ -32,7 +32,7 @@ const Slide07Forensics = () => (
     title="Artefactos y cadena de custodia"
     subtitle="RFC 3227 · ISO/IEC 27037 · CPPN Arts. 253–276"
     slideNumber={10}
-    totalSlides={12}
+    totalSlides={13}
   >
     <div className="forensic-slide">
       <section className="forensic-acquisition" aria-label="Orden de adquisición forense">

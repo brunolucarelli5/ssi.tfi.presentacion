@@ -13,7 +13,7 @@ const Slide05Impact = () => (
     title="Costo de negocio y alcance del recall"
     subtitle="Sin capacidad OTA: distribución física de parches a toda la flota"
     slideNumber={6}
-    totalSlides={12}
+    totalSlides={13}
   >
     <div className="impact-slide">
       <div className="impact-visual">

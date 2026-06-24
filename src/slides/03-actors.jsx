@@ -12,7 +12,7 @@ const Slide03Actors = () => (
     title="Quién intervino en el incidente"
     subtitle="Investigadores, fabricante, operador y cadena de suministro del Uconnect"
     slideNumber={4}
-    totalSlides={12}
+    totalSlides={13}
   >
     <div className="actors-slide">
       <section className="actors-hero" aria-label="Investigadores">
