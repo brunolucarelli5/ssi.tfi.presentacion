@@ -45,30 +45,32 @@ const Slide03Actors = () => (
           <span className="actors-ecosystem-line" aria-hidden="true" />
         </div>
 
-        <div className="actors-grid" role="list" aria-label="Actores del ecosistema">
-          {ECOSYSTEM_ACTORS.map((actor) => (
-            <div key={actor.id} className="actors-grid-cell" role="listitem">
-              <LogoBadge
-                imageKey={actor.imageKey}
-                name={actor.name}
-                role={actor.role}
-                size="md"
-                showName={false}
-                highlight={KEY_ACTORS.has(actor.id)}
-              />
-            </div>
-          ))}
-        </div>
+        <div className="actors-ecosystem-body">
+          <div className="actors-grid" role="list" aria-label="Actores del ecosistema">
+            {ECOSYSTEM_ACTORS.map((actor) => (
+              <div key={actor.id} className="actors-grid-cell" role="listitem">
+                <LogoBadge
+                  imageKey={actor.imageKey}
+                  name={actor.name}
+                  role={actor.role}
+                  size="md"
+                  showName={false}
+                  highlight={KEY_ACTORS.has(actor.id)}
+                />
+              </div>
+            ))}
+          </div>
 
-        <div className="actors-legend">
-          <span className="actors-legend-item">
-            <span className="actors-legend-dot actors-legend-dot--key" aria-hidden="true" />
-            Rol central en el incidente
-          </span>
-          <span className="actors-legend-item">
-            <span className="actors-legend-dot" aria-hidden="true" />
-            Cadena de suministro
-          </span>
+          <div className="actors-legend" aria-label="Leyenda de roles">
+            <span className="actors-legend-item">
+              <span className="actors-legend-dot actors-legend-dot--key" aria-hidden="true" />
+              Rol central en el incidente
+            </span>
+            <span className="actors-legend-item">
+              <span className="actors-legend-dot" aria-hidden="true" />
+              Cadena de suministro
+            </span>
+          </div>
         </div>
       </div>
     </div>

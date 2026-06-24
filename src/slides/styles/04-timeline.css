@@ -6,6 +6,7 @@
   height: 100%;
   min-height: 0;
   overflow: hidden;
+  padding-bottom: 0.75rem;
 }
 
 .timeline-v2 {
@@ -29,20 +30,32 @@
 }
 
 .timeline-v2-marker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 0.55rem;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  justify-items: center;
+  align-items: stretch;
   min-height: 0;
 }
 
+.timeline-v2-marker::before {
+  content: '';
+  grid-row: 1;
+  width: 2px;
+  min-height: 0;
+  background: var(--jeep);
+}
+
+.timeline-v2-item:first-child .timeline-v2-marker::before {
+  background: transparent;
+}
+
 .timeline-v2-dot {
+  grid-row: 2;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--bg);
   border: 2px solid var(--jeep);
-  flex-shrink: 0;
   z-index: 1;
 }
 
@@ -53,11 +66,10 @@
 }
 
 .timeline-v2-connector {
-  flex: 1;
+  grid-row: 3;
   width: 2px;
-  min-height: 0.25rem;
+  min-height: 0;
   background: linear-gradient(180deg, var(--jeep), var(--danger));
-  margin: 3px 0;
 }
 
 .timeline-v2-card {

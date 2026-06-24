@@ -56,12 +56,14 @@ const Slide04Vulnerabilities = () => (
                 <span className="vuln-cia-badge" key={letter}>{letter}</span>
               ))}
             </div>
-            <img
-              src={IMAGES[vuln.brand].src}
-              alt=""
-              className="vuln-card-brand"
-              aria-hidden="true"
-            />
+            <div className="vuln-card-brand-wrap">
+              <img
+                src={IMAGES[vuln.brand].src}
+                alt=""
+                className="vuln-card-brand"
+                aria-hidden="true"
+              />
+            </div>
           </div>
         </div>
       ))}

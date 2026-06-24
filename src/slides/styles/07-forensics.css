@@ -1,34 +1,283 @@
-.forensic-slide-layout {
+/* ── Pericias forenses — diapositiva dedicada ── */
+.slide-body:has(> .forensic-slide) {
+  justify-content: flex-start;
+}
+
+.forensic-slide {
   display: grid;
-  grid-template-columns: 1fr 150px;
-  gap: 1rem;
-  align-items: stretch;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 0.85rem;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  padding-bottom: 0.75rem;
 }
 
-.forensic-slide-main {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  min-width: 0;
-}
-
-.forensic-slide-aside {
+/* ── Orden de adquisición ── */
+.forensic-acquisition {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.forensic-acquisition-hint {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+.forensic-stack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.forensic-step {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  gap: 0.6rem;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.forensic-step-marker {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  min-height: 0;
+}
+
+.forensic-step-order {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 2px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+}
+
+.forensic-step--high .forensic-step-order {
+  border-color: #ef444466;
+  color: var(--danger);
+  background: var(--danger-dim);
+}
+
+.forensic-step--medium .forensic-step-order {
+  border-color: #fbbf2466;
+  color: var(--warning);
+  background: #fbbf2418;
+}
+
+.forensic-step--low .forensic-step-order {
+  border-color: #60a5fa66;
+  color: var(--info);
+  background: #60a5fa18;
+}
+
+.forensic-step-connector {
+  flex: 1;
+  width: 2px;
+  min-height: 0.25rem;
+  margin: 0.25rem 0;
+  background: linear-gradient(180deg, var(--border) 0%, transparent 100%);
+  border-radius: 1px;
+}
+
+.forensic-step-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.7rem 0.9rem;
+  background: linear-gradient(160deg, var(--bg-card) 0%, #0c1018 100%);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-width: 0;
+  height: 100%;
+}
+
+.forensic-step--high .forensic-step-card {
+  border-left: 3px solid var(--danger);
+  background: linear-gradient(160deg, #1a1218 0%, var(--bg-card) 100%);
+}
+
+.forensic-step--medium .forensic-step-card {
+  border-left: 3px solid var(--warning);
+}
+
+.forensic-step--low .forensic-step-card {
+  border-left: 3px solid var(--info);
+}
+
+.forensic-step-badge {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.forensic-step-badge--high {
+  color: var(--danger);
+  background: var(--danger-dim);
+  border: 1px solid #ef444444;
+}
+
+.forensic-step-badge--medium {
+  color: var(--warning);
+  background: #fbbf2418;
+  border: 1px solid #fbbf2444;
+}
+
+.forensic-step-badge--low {
+  color: var(--info);
+  background: #60a5fa18;
+  border: 1px solid #60a5fa44;
+}
+
+.forensic-artifacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.forensic-artifact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+  padding: 0.5rem 0.55rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  min-height: 2.6rem;
+}
+
+/* ── Sidebar ── */
+.forensic-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.forensic-vehicle {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .forensic-vehicle .slide-image-frame {
-  min-height: 100px;
+  flex: 1;
+  min-height: 0;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #0a0e14 0%, var(--bg-card) 100%);
 }
 
-.forensic-qnx-logo {
-  height: 24px;
-  width: auto;
-  opacity: 0.85;
+.forensic-vehicle .slide-image-img-contain {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
-.forensic-cards {
-  margin-top: 0.75rem;
+.forensic-vehicle .slide-image-caption {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  text-align: center;
+  padding-top: 0.35rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.forensic-custody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.7rem 0.85rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.forensic-custody-title {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.forensic-custody-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.forensic-custody-item {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+  padding: 0.25rem 0.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+@media (max-height: 720px) {
+  .forensic-slide {
+    gap: 0.6rem;
+  }
+
+  .forensic-step-order {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.65rem;
+  }
+
+  .forensic-step-card {
+    padding: 0.55rem 0.7rem;
+    gap: 0.4rem;
+  }
+
+  .forensic-artifact {
+    font-size: 0.68rem;
+    min-height: 2.2rem;
+  }
 }

@@ -36,12 +36,12 @@ const Slide05Impact = () => (
 
       <div className="impact-metrics">
         <div className="impact-stat-card impact-stat-card--danger">
-          <span className="impact-stat-value">USD 200M</span>
+          <span className="impact-stat-value">USD 200.000.000</span>
           <span className="impact-stat-label">Costo estimado del recall físico</span>
         </div>
 
         <div className="impact-stat-card impact-stat-card--accent">
-          <span className="impact-stat-value">1.4M</span>
+          <span className="impact-stat-value">1.400.000</span>
           <span className="impact-stat-label">Vehículos afectados en Norteamérica</span>
         </div>
 

@@ -116,7 +116,7 @@
 }
 
 .arch-domains-slide .arch-domain-photo .slide-image-frame {
-  max-height: 172px;
+  max-height: none;
 }
 
 .arch-domains-slide .arch-domain-title {
@@ -217,7 +217,8 @@
 }
 
 .vuln-card {
-  padding: 1.15rem;
+  min-height: 13rem;
+  padding: 1.35rem 1.15rem;
 }
 
 .vuln-card-icon {
@@ -244,9 +245,14 @@
   font-size: 0.72rem;
 }
 
+.vuln-card-brand-wrap {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+}
+
 .vuln-card-brand {
-  height: 24px;
-  max-width: 80px;
+  height: 36px;
+  max-width: 112px;
 }
 
 .vuln-chain-footer {
@@ -339,25 +345,28 @@
   font-size: 0.72rem;
 }
 
-.forensic-priority {
-  font-size: 0.75rem;
-  min-width: 110px;
+.forensic-slide {
+  grid-template-columns: 1.2fr 0.8fr !important;
 }
 
-.forensic-items {
-  font-size: 0.92rem;
+.forensic-step-badge {
+  font-size: 0.76rem;
 }
 
-.forensic-slide-layout {
-  grid-template-columns: 1fr 190px !important;
+.forensic-artifact {
+  font-size: 0.82rem;
 }
 
-.forensic-vehicle .slide-image-frame {
-  min-height: 140px;
+.forensic-custody-title {
+  font-size: 0.85rem;
 }
 
-.forensic-qnx-logo {
-  height: 30px;
+.forensic-custody-item {
+  font-size: 0.76rem;
+}
+
+.forensic-acquisition-hint {
+  font-size: 0.78rem;
 }
 
 .rec-card-title {

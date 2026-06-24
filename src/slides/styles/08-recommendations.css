@@ -47,12 +47,3 @@
   line-height: 1.35;
   flex: 1;
 }
-
-.rec-card-ref {
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  color: var(--text-muted);
-  opacity: 0.8;
-  margin-top: auto;
-  padding-top: 0.25rem;
-}

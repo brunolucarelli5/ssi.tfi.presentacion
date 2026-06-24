@@ -4,35 +4,35 @@ import './styles/04-timeline.css';
 
 const TIMELINE_EVENTS = [
   {
-    date: 'Oct 2014',
+    date: 'Octubre de 2014',
     phase: 'Divulgación',
     label: 'Reporte responsable del D-Bus a FCA',
     detail: 'Primera notificación al fabricante',
   },
   {
-    date: 'Mar 2015',
+    date: 'Marzo de 2015',
     phase: 'Investigación',
     label: 'Se informa reprogramación del V850',
     detail: 'Escalada hacia el dominio crítico',
   },
   {
-    date: '16 Jul 2015',
+    date: '16 de Julio de 2015',
     phase: 'Mitigación',
     label: 'Parche firmware 15.26.1',
     detail: 'Actualización antes de la publicación',
   },
   {
-    date: '21 Jul 2015',
+    date: '21 de Julio de 2015',
     phase: 'Crisis pública',
-    label: 'Publicación en Wired',
+    label: 'Publicación en ',
     detail: 'Demostración remota en vivo',
     highlight: true,
     wired: true,
   },
   {
-    date: '24 Jul 2015',
+    date: '24 de Julio de 2015',
     phase: 'Respuesta',
-    label: 'Sprint bloquea :6667 · Recall NHTSA',
+    label: 'Sprint bloquea el puerto 6667 · Recall NHTSA',
     detail: 'Cierre del vector celular y recall oficial',
     highlight: true,
   },
